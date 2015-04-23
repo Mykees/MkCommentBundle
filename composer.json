@@ -1,0 +1,33 @@
+{
+    "name": "mykees/symfony2-commentbundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Comment Bundle",
+    "keywords": ["symfony comment bundle", "comment"],
+    "authors": [
+        {
+            "name": "Rafidison Michaël",
+            "email": "rafidisonmichael@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "liip/functional-test-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Mykees\\CommentBundle": ""
+        }
+    },
+    "require": {
+        "php": ">=5.4",
+        "symfony/framework-bundle":         "~2.3",
+        "twig/twig":                        "*",
+        "doctrine/doctrine-bundle":         "*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0"
+        }
+    },
+    "target-dir" : "Mykees/CommentBundle"
+}

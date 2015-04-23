@@ -1,0 +1,13 @@
+<ul class="list-unstyled">
+
+    {% for key,comment in comments.comments %}
+
+        {% include "MykeesCommentBundle:Comment:comment.html.twig" %}
+
+        {% for comment in comment.replies %}
+            {% include "MykeesCommentBundle:Comment:comment.html.twig" %}
+        {% endfor %}
+
+    {% endfor %}
+
+</ul>

@@ -1,0 +1,22 @@
+<li class="comment__list {{ comment.getParentId > 0  ? 'is_reply' : '' }}">
+    <div class="row">
+        <div class="col-xs-2">
+            <img src="http://www.gravatar.com/avatar/{{ comment.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+        </div>
+        <div class="col-xs-10">
+            <p>
+                {% if comment.user.username is defined %}
+                        <strong>{{ comment.user.username|capitalize }}</strong>,
+                    {% else %}
+                        <strong>{{ comment.username|capitalize }}</strong>,
+                {% endif %}
+
+                Le {{ comment.createdAt|date("d/m/Y H:i:s") }} |
+                <a href="#" data-id="{{ comment.getParentId > 0  ? comment.getParentId : comment.getId }}" class="reply">Reply</a>
+            </p>
+            <p>
+                {{ comment.content }}
+            </p>
+        </div>
+    </div>
+</li>

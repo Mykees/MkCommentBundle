@@ -1,0 +1,28 @@
+parameters:
+    mykees.comment.class: Mykees\CommentBundle\Entity\Comment
+
+services:
+#    mykees_comment.example:
+#        class: Mykees\CommentBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    mykees.comment.form:
+        class: Mykees\CommentBundle\Form\CommentType
+        arguments: [%mykees.comment.class%,@service_container]
+        tags:
+            - { name: form.type, alias: mykees_commentbundle_comment }
+
+    mykees.comment.manager:
+        class: Mykees\CommentBundle\Manager\CommentManager
+        arguments: [@doctrine.orm.entity_manager, @form.factory, @router,@service_container]
+
+
+    mykees.twig.form.extension:
+        class: Mykees\CommentBundle\Twig\Extension\CommentExtension
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension, alias: comment_form }
+
+    mykees.twig.md5extension:
+        class: Mykees\CommentBundle\Twig\Extension\Md5Extension
+        tags:
+            - { name: twig.extension }

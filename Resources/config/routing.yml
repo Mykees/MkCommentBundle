@@ -1,0 +1,17 @@
+mykees_comment_manage:
+    pattern:  /manage/{bundle}/{ref}/{ref_id}
+    defaults: { _controller: MykeesCommentBundle:Comments:manage }
+    requirements:
+        bundle: "[a-zA-Z0-9]+"
+        ref: "[a-zA-Z0-9]+"
+        ref_id:  \d+
+
+
+mykees_comment_reply:
+    pattern:  /reply/{bundle}/{ref}/{ref_id}/{parent_id}
+    defaults: { _controller: MykeesCommentBundle:Comments:reply }
+    requirements:
+        bundle: "[a-zA-Z0-9]+"
+        ref: "[a-zA-Z0-9]+"
+        ref_id:  \d+
+        parent_id:  \d+

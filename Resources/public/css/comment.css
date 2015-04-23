@@ -1,0 +1,14 @@
+.comment__pullright{
+    margin-top: -25px;
+    display:none;
+}
+.comment__list{
+    margin-top:25px;
+    margin-bottom:25px;
+}
+.comment__list.is_reply{
+    margin-left:78px;
+}
+.form-wrapper{
+    margin-bottom: 40px;
+}

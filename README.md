@@ -76,7 +76,7 @@ The Symfony2-CommentBundle bundle allows you to add a form that will allow you t
 	}
 
 
-**2)** Enable the configuration:
+**2)** Enable the configuration in your app/config/config.yml:
 
 	mykees_comment:
 	    comment_class: YourProject\YourBundle\Entity\Comment
@@ -180,6 +180,10 @@ In your view, to add the comment form and comments list you can do this very eas
 
 
 **3)** To enhance the style and user experience you must to add the css and javascript markup :
+
+Run the following command lines:
+
+	$ php app/console assets:install
 
 **CSS**
 	

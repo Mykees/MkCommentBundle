@@ -1,5 +1,5 @@
 {
-    "name": "mykees/symfony2-commentbundle",
+    "name": "mykees/symfony2-comment-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Comment Bundle",
     "keywords": ["symfony comment bundle", "comment"],

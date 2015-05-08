@@ -143,8 +143,20 @@ class CommentManager extends Manager{
 
     public function deleteComment($comment_id)
     {
-        $comment = $this->repository->find($comment_id);
-        $this->em->remove($comment);
+        $comments = $this->repository
+            ->createQueryBuilder('c')
+            ->where("c.id = :comment_id")
+            ->setParameter('comment_id',$comment_id)
+            ->orWhere("c.parentId = :parent_id")
+            ->setParameter('parent_id',$comment_id)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        foreach($comments as $comment)
+        {
+            $this->em->remove($comment);
+        }
         $this->em->flush();
 
         return true;

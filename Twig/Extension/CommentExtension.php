@@ -68,10 +68,11 @@ class CommentExtension extends \Twig_Extension{
         ]);
     }
 
-    public function CommentsList($comments)
+    public function CommentsList($comments,$canAdminComment=false)
     {
         return $this->getService('templating')->render('MykeesCommentBundle:Comment:comments.html.twig',[
-            'comments'=>$comments
+            'comments'=>$comments,
+            "canAdminComment"=>$canAdminComment
         ]);
     }
 

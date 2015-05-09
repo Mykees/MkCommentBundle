@@ -42,7 +42,11 @@ class CommentManager extends Manager{
         $this->user = $this->container->hasParameter('fos_user.model.user.class') ? '\\'.$this->container->getParameter('fos_user.model.user.class') : null;
     }
 
-
+    /**
+     * @param CommentableInterface $referer
+     * @param null $success_message
+     * @return object|\Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     */
     public function createForm(CommentableInterface $referer, $success_message=null)
     {
         $session  = $this->container->get('session');
@@ -76,42 +80,85 @@ class CommentManager extends Manager{
         return $form;
     }
 
+    /**
+     * Retrieve all comments for an entity
+     * @param CommentableInterface $referer
+     * @return mixed
+     */
     public function findComments(CommentableInterface $referer)
     {
         $getId    = $this->primaryKey( $referer );
         $refName  = $this->getClassShortName ( $referer );
         $comments = [];
-        $replies  = [];
         $is_join = method_exists($this->comment_class,'getUser') ? true : false;
+        $qb = $this->repository->createQueryBuilder('c');
 
         if($is_join)
         {
-            $comments['comments'] = $this->repository
-                ->createQueryBuilder('c')
+            $qb
                 ->leftJoin('c.user','u')
                 ->addSelect('u')
-                ->where("c.model = :ref")
-                ->setParameter('ref',$refName)
-                ->andWhere("c.modelId = :ref_id")
-                ->setParameter('ref_id',$referer->$getId())
-                ->orderBy('c.createdAt', 'DESC')
-                ->getQuery()
-                ->getResult()
-            ;
-        }else{
-            $comments['comments'] = $this->repository
-                ->createQueryBuilder('c')
-                ->where("c.model = :ref")
-                ->setParameter('ref',$refName)
-                ->andWhere("c.modelId = :ref_id")
-                ->setParameter('ref_id',$referer->$getId())
-                ->orderBy('c.createdAt', 'DESC')
-                ->getQuery()
-                ->getResult()
             ;
         }
 
+        $comments['comments'] = $qb
+            ->where("c.model = :ref")
+            ->setParameter('ref',$refName)
+            ->andWhere("c.modelId = :ref_id")
+            ->setParameter('ref_id',$referer->$getId())
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+
         $comments['count'] = count($comments['comments']);
+
+        return $this->buildCommentStructure($comments);
+    }
+
+
+    /**
+     * Retrieve all comments by model and model id
+     * @param $model
+     * @param $modelId
+     * @return mixed
+     */
+    public function findByModelAndModelId($model, $modelId)
+    {
+        $is_join = method_exists($this->comment_class,'getUser') ? true : false;
+        $qb = $this->repository->createQueryBuilder('c');
+
+        if($is_join)
+        {
+            $qb
+                ->leftJoin('c.user','u')
+                ->addSelect('u')
+            ;
+        }
+
+        $comments['comments'] = $qb
+            ->where("c.model = :ref")
+            ->setParameter('ref',$model)
+            ->andWhere("c.modelId = :ref_id")
+            ->setParameter('ref_id',$modelId)
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        $comments['count'] = count($comments['comments']);
+
+        return $this->buildCommentStructure($comments);
+    }
+
+    /**
+     * Build comments and replies
+     * @param $comments
+     * @return mixed
+     */
+    public function buildCommentStructure($comments)
+    {
+        $replies  = [];
 
         foreach($comments['comments'] as $kk=>$comment)
         {
@@ -131,6 +178,14 @@ class CommentManager extends Manager{
         return $comments;
     }
 
+    /**
+     * Retrieve all comments
+     * @param array $criteria
+     * @param null $orderBy
+     * @param null $limit
+     * @param null $offset
+     * @return array
+     */
     public function findAllComments(array $criteria=[],$orderBy=null,$limit=null,$offset=null)
     {
         if(!empty($criteria) || isset($orderBy) || isset($limit) || isset($offset))
@@ -141,14 +196,22 @@ class CommentManager extends Manager{
         }
     }
 
-    public function deleteComment($comment_id)
+    /**
+     * Delete comment
+     * @param $model
+     * @param $modelId
+     * @return bool
+     */
+    public function deleteComment($model,$modelId)
     {
         $comments = $this->repository
             ->createQueryBuilder('c')
-            ->where("c.id = :comment_id")
-            ->setParameter('comment_id',$comment_id)
+            ->where('c.model = :model')
+            ->setParameter('model',$model)
+            ->andWhere("c.id = :comment_id")
+            ->setParameter('comment_id',$modelId)
             ->orWhere("c.parentId = :parent_id")
-            ->setParameter('parent_id',$comment_id)
+            ->setParameter('parent_id',$modelId)
             ->getQuery()
             ->getResult()
         ;
@@ -162,6 +225,12 @@ class CommentManager extends Manager{
         return true;
     }
 
+    /**
+     * Verify if the comment is a spam
+     * @param $comment
+     * @return bool
+     * @throws \Mykees\CommentBundle\Libs\exception
+     */
     public function isSpam($comment)
     {
         $akismetInit = $this->container->hasParameter('akismet') ? $this->container->getParameter('akismet') : null;

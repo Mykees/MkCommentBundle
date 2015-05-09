@@ -1,7 +1,12 @@
 <li class="comment__list {{ comment.getParentId > 0  ? 'is_reply' : '' }}">
     <div class="row">
         <div class="col-xs-2">
-            <img src="http://www.gravatar.com/avatar/{{ comment.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+
+            {% if comment.user.email is defined %}
+                <img src="http://www.gravatar.com/avatar/{{ comment.user.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+            {% else %}
+                <img src="http://www.gravatar.com/avatar/{{ comment.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+            {% endif %}
         </div>
         <div class="col-xs-10">
             <p>
@@ -12,7 +17,11 @@
                 {% endif %}
 
                 Le {{ comment.createdAt|date("d/m/Y H:i:s") }} |
-                <a href="#" data-id="{{ comment.getParentId > 0  ? comment.getParentId : comment.getId }}" class="reply">Reply</a>
+                {% if canAdminComment == true %}
+                        <a class="btn btn-xs btn-danger" href="{{ path('comment_admin_delete',{'id':comment.id}) }}">Delete</a>
+                    {% else %}
+                        <a href="#" data-id="{{ comment.getParentId > 0  ? comment.getParentId : comment.getId }}" class="reply">Reply</a>
+                {% endif %}
             </p>
             <p>
                 {{ comment.content }}

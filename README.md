@@ -51,6 +51,7 @@ The Symfony2-CommentBundle bundle allows you to add a form that will allow you t
 
 	/**
 	 * @ORM\Entity
+ 	 * @ORM\HasLifecycleCallbacks
 	 */
 	class Comment extends CommentParent
 	{
@@ -244,6 +245,7 @@ If you use the FOSUserBundle in your project and want to use it with Symfony2-Co
 	 * Comment
 	 *
 	 * @ORM\Entity
+ 	 * @ORM\HasLifecycleCallbacks
 	 */
 	class Comment extends BaseComment implements HasUserInterface
 	{

@@ -1,13 +1,23 @@
-<ul class="list-unstyled">
+{% if canAdminComment == true %}
 
-    {% for key,comment in comments.comments %}
+    {% if comments.count == 0 %}
+        <h3>No comments</h3>
+    {% endif %}
 
-        {% include "MykeesCommentBundle:Comment:comment.html.twig" %}
+    {% else %}
 
-        {% for comment in comment.replies %}
-            {% include "MykeesCommentBundle:Comment:comment.html.twig" %}
-        {% endfor %}
+        <ul class="list-unstyled">
 
-    {% endfor %}
+            {% for key,comment in comments.comments %}
 
-</ul>
+                {% include "MykeesCommentBundle:Comment:comment.html.twig" %}
+
+                {% for comment in comment.replies %}
+                    {% include "MykeesCommentBundle:Comment:comment.html.twig" %}
+                {% endfor %}
+
+            {% endfor %}
+
+        </ul>
+
+{% endif %}

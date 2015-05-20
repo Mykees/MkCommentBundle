@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Symfony2 Comment Bundle by Mykees</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/app.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300|Karla:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+
+<div class="page">
+
+    <div class="header header--comment">
+        <div class="header__container">
+            <h1>Symfony2 <span>CommentBundle</span></h1>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="content_container">
+            <div class="nav">
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/index.html">Présentation</a>
+                <a class="nav__link nav__link--current" href="http://Mykees.github.io/Symfony2-Comment-Bundle/configuration.html">Configuration</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/usage.html">Usage</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/options.html">View and Style</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/options.html">Options</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/infos.html">More infos</a>
+            </div>
+
+            <div class="content__text">
+
+
+                <h2 class="title-section">Intallation</h2>
+
+                <p>Download Symfony2-CommentBundle with the command line :</p>
+                <pre><code>$ php composer.phar require mykees/symfony2-comment-bundle "1.0.*@dev"</code></pre>
+
+
+                <p>Enable the bundle :</p>
+<pre><code>&lt;?php
+public function registerBundle
+{
+    $bundles = array(
+        <span class="light-code">// ...</span>
+        new Mykees\CommentBundle\MykeesCommentBundle(),
+    );
+}
+</code></pre>
+
+                <p>Add route in your app/config/routing.yml :</p>
+
+<pre><code>mykees_comment:
+    resource: "@MykeesCommentBundle/Resources/config/routing.yml"
+    prefix:   /comment
+</code></pre>
+
+                <p>&nbsp;</p>
+
+                <h2 class="title-section">Create your Comment classe</h2>
+
+                <p>You must to create your own <strong>Comment class</strong> for use the Symfony2-CommentBundle, and this class must extend by the Mykees\CommentBundle\Entity\Comment class that will provide variables getters, setters and mapping required.</p>
+
+
+<pre><code>&lt;?php
+// src/YourProject/YourBundle/Entity/Comment.php
+
+namespace YourProject\YourBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Mykees\CommentBundle\Entity\Comment as CommentParent;
+
+/**
+* @ORM\Entity
+* @ORM\HasLifecycleCallbacks
+*/
+class Comment extends CommentParent
+{
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="id", type="integer")
+    * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    private $id;
+
+
+    /**
+    * Get id
+    *
+    * @return integer
+    */
+    public function getId()
+    {
+        return $this-&gt;id;
+    }
+}
+</code></pre>
+
+                <p>Enable the configuration in your app/config/config.yml :</p>
+<pre><code>mykees_comment:
+    comment_class: YourProject\YourBundle\Entity\Comment
+</code></pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--OTHERS PROJECTS-->
+    <div class="others__projects">
+
+        <div class="block__projects">
+            <h2 class="project__title project__tag">
+                <a href="#">
+                    <span>Symfony2 TagBundle</span>
+                </a>
+            </h2>
+        </div>
+        <div class="block__projects project__left">
+            <h2 class="project__title project__media">
+                <a href="http://Mykees.github.io/Symfony2-Media-Bundle/">
+                    <span>Symfony2 MediaBundle</span>
+                </a>
+            </h2>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Symfony2 Comment Bundle by Mykees</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/app.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300|Karla:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+
+<div class="page">
+
+    <div class="header header--comment">
+        <div class="header__container">
+            <h1>Symfony2 <span>CommentBundle</span></h1>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="content_container">
+            <div class="nav">
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/index.html">Présentation</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/configuration.html">Configuration</a>
+                <a class="nav__link nav__link--current" href="http://Mykees.github.io/Symfony2-Comment-Bundle/usage.html">Usage</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/options.html">View and Style</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/options.html">Options</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/infos.html">More infos</a>
+            </div>
+
+            <div class="content__text">
+
+                <h2 class="title-section">Retrieve and use the comment form</h2>
+
+                <p>To retrieve the comment form for your content, <strong>you need to have an object with an id</strong>. By example if you have a controller that retrieves an article and an entity Article, you can do like that :</p>
+
+
+                <p>&nbsp;</p>
+                <p>Implement the <strong>CommentableInterface</strong> Interface to your entity:</p>
+
+<pre><code>&lt;?php
+namespace YourProject\YourBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Mykees\CommentBundle\Interfaces\CommentableInterface;
+
+/**
+* Article
+*
+* @ORM\Table()
+* @ORM\Entity()
+*/
+class Article implements CommentableInterface
+{
+    //....
+}
+</code></pre>
+
+                <h3 class="sub-section">In your controller :</h3>
+
+<pre><code>&lt;?php
+<div class="light-code">
+namespace YourProject\YourBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class BlogController extends Controller
+{
+
+    public function showAction($id)
+    {
+        $article = $this-&gt;getDoctrine()-&gt;getManager()-&gt;getRepository('YourProjectYourBundle:Article')-&gt;findById($id);
+</div>
+        $commentForm = $this-&gt;get('mykees.comment.manager')-&gt;createForm($article);
+        <span class="light-code">
+        return $this-&gt;render('YourProjectYourBundle:Blog:show.html.twig',[
+        </span><span class="light-code">//...</span>
+            'form'=&gt;$commentForm,
+        <span class="light-code">]);
+    }
+
+}</span>
+</code></pre>
+
+
+            <h2 class="title-section">Retrieves comments list</h2>
+
+            <p>To retrieve the comments list linked to an entity you can do like that in your controller :</p>
+
+             <h3 class="sub-section">In your controller :</h3>
+
+<pre><code>&lt;?php
+<div class="light-code">
+namespace YourProject\YourBundle\Controller;
+
+class BlogController extends Controller
+{
+    public function showAction($id)
+    {
+        $post = $this-&gt;getDoctrine()-&gt;getManager()-&gt;getRepository('YourProjectYourBundle:Article')-&gt;findById($id);
+</div>
+        $comments = $this-&gt;get('mykees.comment.manager')-&gt;findComments($article);
+<span class="light-code">
+        return $this-&gt;render('YourProjectYourBundle:Blog:show.html.twig',[
+            //...</span>
+            'comments'=&gt;$comments,
+<span class="light-code">         ]);
+    }
+}</span>
+</code></pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--OTHERS PROJECTS-->
+    <div class="others__projects">
+
+        <div class="block__projects">
+            <h2 class="project__title project__tag">
+                <a href="#">
+                    <span>Symfony2 TagBundle</span>
+                </a>
+            </h2>
+        </div>
+        <div class="block__projects project__left">
+            <h2 class="project__title project__media">
+                <a href="http://Mykees.github.io/Symfony2-Media-Bundle/">
+                    <span>Symfony2 MediaBundle</span>
+                </a>
+            </h2>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+</html>

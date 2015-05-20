@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Symfony2 Comment Bundle by Mykees</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/app.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300|Karla:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+
+<div class="page">
+
+    <div class="header header--comment">
+        <div class="header__container">
+            <h1>Symfony2 <span>CommentBundle</span></h1>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="content_container">
+            <div class="nav">
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/index.html">Présentation</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/configuration.html">Configuration</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/usage.html">Usage</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/options.html">View and Style</a>
+                <a class="nav__link nav__link--current" href="http://Mykees.github.io/Symfony2-Comment-Bundle/options.html">Options</a>
+                <a class="nav__link" href="http://Mykees.github.io/Symfony2-Comment-Bundle/infos.html">More infos</a>
+            </div>
+
+            <div class="content__text">
+
+                <h2 class="title-section">Use with FOSUserBundle</h2>
+
+                <p>If you use the <strong><a href="https://github.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a></strong> in your project and want to use it with Symfony2-CommentBundle, your Comment classe must implement <strong>HasUserInterface</strong> Interface, and add $user variable with Getter and Setter</p>
+
+<pre><code>&lt;?php
+
+namespace YourProject\YourBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\UserInterface;
+use Mykees\CommentBundle\Entity\Comment as BaseComment;
+use Mykees\CommentBundle\Interfaces\HasUserInterface;
+
+/**
+* Comment
+*
+* @ORM\Entity
+* @ORM\HasLifecycleCallbacks
+*/
+class Comment extends BaseComment implements HasUserInterface
+{
+
+    <span class="light-code">//...</span>
+
+    /**
+    *
+    * @ORM\ManyToOne(targetEntity="YourProject\YourBundle\Entity\User")
+    * @var User
+    */
+    private $user;
+
+    <span class="light-code">//...</span>
+
+    public function getUser()
+    {
+        return $this-&gt;user;
+    }
+
+    public function setUser(UserInterface $user)
+    {
+        $this-&gt;user = $user;
+        return $this;
+    }
+
+    <span class="light-code">//...</span>
+}
+</code></pre>
+
+
+
+                <h2 class="title-section">Spam Filter</h2>
+
+                <p>The Symfony2-CommentBundle can work with <strong><a href="https://akismet.com/">Akismet</a></strong>. To use it, it's very simple.</p>
+
+                <ul>
+                    <li>Create an <a href="https://akismet.com/">account</a>.</li>
+                    <li>
+                        Add to app/config/config.yml the following lines :
+
+<pre><code>mykees_comment:
+    akismet:
+        api_key: YOUR API KEY
+        website: YOUR WEBSITE
+</code></pre>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--OTHERS PROJECTS-->
+    <div class="others__projects">
+
+        <div class="block__projects">
+            <h2 class="project__title project__tag">
+                <a href="#">
+                    <span>Symfony2 TagBundle</span>
+                </a>
+            </h2>
+        </div>
+        <div class="block__projects project__left">
+            <h2 class="project__title project__media">
+                <a href="http://Mykees.github.io/Symfony2-Media-Bundle/">
+                    <span>Symfony2 MediaBundle</span>
+                </a>
+            </h2>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+</html>

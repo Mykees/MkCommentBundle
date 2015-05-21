@@ -384,6 +384,9 @@ h1 span {
 .header--comment {
   background-image: url('../img/comment-list.jpg'); }
 
+.header--tag {
+  background-image: url('../img/tag-list.jpg'); }
+
 .header__container h1 {
   position: absolute;
   text-align: center;
@@ -524,7 +527,8 @@ h1 span {
   top: 0;
   bottom: 0;
   z-index: 0;
-  background: rgba(49, 49, 49, 0.9); }
+  background: rgba(49, 49, 49, 0.9);
+  transition-duration: 0.3s; }
 
 .project__title:hover:before {
   background: rgba(49, 49, 49, 0.6); }

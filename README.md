@@ -7,4 +7,4 @@ The Symfony2-CommentBundle bundle allows you to add a form that will allow you t
 
 ## Documentation
 
-[DOCUMENTATION](http://mykees.github.io/Symfony2-Comment-Bundle/)
+[DOCUMENTATION](http://mykees.github.io/MkCommentBundle/)

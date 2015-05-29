@@ -9,16 +9,14 @@
             "email": "rafidisonmichael@gmail.com"
         }
     ],
-    "require-dev": {
-        "liip/functional-test-bundle": "dev-master",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
-
-        
-    },
     "autoload": {
         "psr-0": {
             "Mykees\\CommentBundle": ""
         }
+    },
+    "require-dev": {
+        "liip/functional-test-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

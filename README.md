@@ -1,5 +1,5 @@
 # Symfony2-CommentBundle
-
+[![Build Status](https://travis-ci.org/Mykees/MkCommentBundle.svg?branch=master)](https://travis-ci.org/Mykees/MkCommentBundle)
 
 ## Presentation
 

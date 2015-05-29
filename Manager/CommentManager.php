@@ -230,7 +230,11 @@ class CommentManager extends Manager{
         return true;
     }
 
-
+    /**
+     * Pre delete comment
+     * @param CommentableInterface $referer
+     * @return bool
+     */
     public function preDeleteComment(CommentableInterface $referer)
     {
         $comments = $this->findComments($referer);

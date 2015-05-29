@@ -19,7 +19,7 @@ class CommentType extends AbstractType {
     public $commentClass;
     public $user;
 
-    public function __construct($commentClass, ContainerInterface $container)
+    public function __construct($commentClass=null, ContainerInterface $container)
     {
         if(is_object($commentClass))
         {
@@ -39,7 +39,7 @@ class CommentType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        if(!empty($this->user) && $this->user == 'anon.')
+        if(empty($this->user) || $this->user == 'anon.')
         {
             $builder
                 ->add('username')

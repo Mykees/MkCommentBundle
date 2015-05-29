@@ -39,7 +39,7 @@ class LoadCommentData implements FixtureInterface,ContainerAwareInterface {
     {
         $comment_class = $this->container->getParameter('mykees_comment.comment.class');
 
-        for($i=1; $i<=3 ;$i++)
+        for($i=1; $i<=5 ;$i++)
         {
             $comment = new $comment_class();
             $comment->setUsername('admin'.$i);
@@ -49,9 +49,9 @@ class LoadCommentData implements FixtureInterface,ContainerAwareInterface {
             $comment->setModel('Post');
             if($i <= 2)
             {
-                $comment->setModelId($i);
-            }else{
                 $comment->setModelId(1);
+            }else{
+                $comment->setModelId($i);
             }
             $comment->setParentId(0);
             $comment->setSpam(0);

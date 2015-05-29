@@ -20,37 +20,96 @@ class CommentsControllerTest extends WebTestCase{
     protected $commentClass;
     protected $request;
 
-//    public function setUp()
-//    {
-//
-//
-//        $this->client = static::createClient();
-//        $this->container = $this->client->getContainer();
-//        $this->manager = $this->container->get('mykees.comment.manager');
-//        $this->em = static::$kernel->getContainer()
-//            ->get('doctrine')
-//            ->getManager()
-//        ;
-//
-//        $fixtures = [
-//            'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
-//        ];
-//        $this->loadFixtures($fixtures);
-//        parent::setUp();
-//    }
-//
-//
-//    public function testFindCommentsByCriteria()
-//    {
-//        $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
-//        $count = count($this->manager->findAllComments(['model'=>'Post','modelId'=>1]));
-//        $this->assertEquals(3, $count);
-//    }
-//    public function testRemoveComment()
-//    {
-//        $this->manager->deleteComment(4);
-//        $count = count($this->manager->findAllComments(['model'=>'Post','modelId'=>1]));
-//        $this->assertEquals(2, $count);
-//    }
+   public function setUp()
+   {
+
+
+       $this->client = static::createClient();
+       $this->container = $this->client->getContainer();
+       $this->manager = $this->container->get('mykees.comment.manager');
+       $this->em = static::$kernel->getContainer()
+           ->get('doctrine')
+           ->getManager()
+       ;
+
+       $fixtures = [
+           'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
+           'Mvc\BlogBundle\DataFixtures\ORM\LoadPostsData',
+       ];
+       $this->loadFixtures($fixtures);
+       parent::setUp();
+   }
+
+    public function testCountCommentHtmlList()
+    {
+        $crawler = $this->client->request('GET', '/blog/title-1-1');
+        $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
+        $this->assertEquals(2,$crawler->filter('.comment__list')->count());
+    }
+
+
+    public function testRemoveAssociateComment()
+    {
+      $crawler = $this->client->request('GET', '/admin/delete/5');
+      $this->assertEquals(302,$this->client->getResponse()->getStatusCode());
+
+      $count = count($this->manager->findAllComments());
+
+      $this->assertEquals(4, $count);
+    }
+
+    public function testAddComment()
+    {
+          
+        $crawler = $this->client->request('GET','/blog/title-1-9');
+        $form = $crawler->selectButton('Submit')->form([
+            'mykees_commentbundle_comment[username]'=>'Mykees',
+            'mykees_commentbundle_comment[email]'=>'contact@mykees.fr',
+            'mykees_commentbundle_comment[content]'=>'Salut les guedins',
+            'mykees_commentbundle_comment[parentId]'=>0,
+          ]);
+
+        $this->client->submit($form);
+
+        $this->assertEquals(302,$this->client->getResponse()->getStatusCode());
+
+        $count = count($this->manager->findAllComments());
+        $this->assertEquals(6, $count);
+    }
+
+    public function testAddCommentWithEmptyName()
+    {
+          
+        $crawler = $this->client->request('GET','/blog/title-1-13');
+        $form = $crawler->selectButton('Submit')->form([
+            'mykees_commentbundle_comment[username]'=>'',
+            'mykees_commentbundle_comment[email]'=>'contact@mykees.fr',
+            'mykees_commentbundle_comment[content]'=>'Salut les guedins',
+            'mykees_commentbundle_comment[parentId]'=>0,
+          ]);
+
+        $this->client->submit($form);
+
+        $count = count($this->manager->findAllComments());
+        $this->assertEquals(5, $count);
+    }
+
+    public function testAddCommentWithWrongEmailFormat()
+    {
+          
+        $crawler = $this->client->request('GET','/blog/title-1-17');
+        $form = $crawler->selectButton('Submit')->form([
+            'mykees_commentbundle_comment[username]'=>'Mykees',
+            'mykees_commentbundle_comment[email]'=>'contact.fr',
+            'mykees_commentbundle_comment[content]'=>'Salut les guedins',
+            'mykees_commentbundle_comment[parentId]'=>0,
+          ]);
+
+        $this->client->submit($form);
+
+        $count = count($this->manager->findAllComments());
+        $this->assertEquals(5, $count);
+    }
+
 
 }

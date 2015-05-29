@@ -146,9 +146,14 @@ class CommentManager extends Manager{
             ->getResult()
         ;
 
-        $comments['count'] = count($comments['comments']);
+        if(count($comments['comments']))
+        {
+            $comments['count'] = count($comments['comments']);
 
-        return $this->buildCommentStructure($comments);
+            return $this->buildCommentStructure($comments);
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -202,16 +207,16 @@ class CommentManager extends Manager{
      * @param $modelId
      * @return bool
      */
-    public function deleteComment($model,$modelId)
+    public function deleteComment($model,$comment_id)
     {
         $comments = $this->repository
             ->createQueryBuilder('c')
             ->where('c.model = :model')
             ->setParameter('model',$model)
             ->andWhere("c.id = :comment_id")
-            ->setParameter('comment_id',$modelId)
+            ->setParameter('comment_id',$comment_id)
             ->orWhere("c.parentId = :parent_id")
-            ->setParameter('parent_id',$modelId)
+            ->setParameter('parent_id',$comment_id)
             ->getQuery()
             ->getResult()
         ;
@@ -224,6 +229,29 @@ class CommentManager extends Manager{
 
         return true;
     }
+
+
+    public function preDeleteComment(CommentableInterface $referer)
+    {
+        $comments = $this->findComments($referer);
+        
+        foreach($comments['comments'] as $comment)
+        {
+            if(count($comment->replies) >= 1)
+            {
+                foreach($comment->replies as $reply)
+                {
+                    $this->em->remove($reply);
+                }
+            }
+            $this->em->remove($comment);
+        }
+
+        $this->em->flush();
+
+        return true;
+    }
+
 
     /**
      * Verify if the comment is a spam

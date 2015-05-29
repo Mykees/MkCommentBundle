@@ -37,12 +37,11 @@ class CommentManagerTest extends WebTestCase{
 
         $fixtures = [
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
+            'Mvc\BlogBundle\DataFixtures\ORM\LoadPostsData',
         ];
         $this->loadFixtures($fixtures);
         parent::setUp();
     }
-
-
 
 
     public function testFindCommentsByCriteria()
@@ -56,14 +55,14 @@ class CommentManagerTest extends WebTestCase{
     {
         $manager = new CommentManager($this->em,$this->form,$this->router,$this->container);
         $count = count($manager->findAllComments());
-        $this->assertEquals(3, $count);
+        $this->assertEquals(5, $count);
     }
 
     public function testRemoveComment()
     {
         $manager = new CommentManager($this->em,$this->form,$this->router,$this->container);
-        $manager->deleteComment(7);
+        $manager->deleteComment('Post',38);
         $count = count($manager->findAllComments());
-        $this->assertEquals(2, $count);
+        $this->assertEquals(4, $count);
     }
 }

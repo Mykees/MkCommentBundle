@@ -25,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Akismet.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Akismet.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Libs/Akismet.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13333334" vertical-offset="0" max-vertical-offset="12330">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12330">
               <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
               <folding>
                 <element signature="e#44#89#0#PHP" expanded="true" />
@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommentsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CommentsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Controller/CommentsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="2970">
-              <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.27710843" vertical-offset="1427" max-vertical-offset="2970">
+              <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
               <folding>
                 <element signature="e#51#98#0#PHP" expanded="true" />
               </folding>
@@ -96,11 +96,9 @@
       <file leaf-file-name="CommentListener.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Listener/CommentListener.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="1440">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-              <folding>
-                <element signature="e#49#91#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1410">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,10 +116,10 @@
         <option value="$PROJECT_DIR$/Twig/Extension/CommentExtension.php" />
         <option value="$PROJECT_DIR$/Form/Type/CommentType.php" />
         <option value="$PROJECT_DIR$/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/Listener/CommentListener.php" />
-        <option value="$PROJECT_DIR$/Controller/CommentsController.php" />
         <option value="$PROJECT_DIR$/Manager/CommentManager.php" />
         <option value="$PROJECT_DIR$/Libs/Akismet.php" />
+        <option value="$PROJECT_DIR$/Listener/CommentListener.php" />
+        <option value="$PROJECT_DIR$/Controller/CommentsController.php" />
       </list>
     </option>
   </component>
@@ -270,7 +268,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="1" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -407,6 +405,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/Akismet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12330">
+          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
+          <folding>
+            <element signature="e#44#89#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Manager/CommentManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7410" max-vertical-offset="8490">
@@ -417,32 +425,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/CommentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="2970">
-          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding>
-            <element signature="e#51#98#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Listener/CommentListener.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="1440">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding>
-            <element signature="e#49#91#0#PHP" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1410">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/Akismet.php">
+    <entry file="file://$PROJECT_DIR$/Controller/CommentsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13333334" vertical-offset="0" max-vertical-offset="12330">
-          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.27710843" vertical-offset="1427" max-vertical-offset="2970">
+          <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
           <folding>
-            <element signature="e#44#89#0#PHP" expanded="true" />
+            <element signature="e#51#98#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

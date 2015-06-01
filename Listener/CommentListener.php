@@ -6,6 +6,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Mykees\MediaBundle\Interfaces\Mediable;
 use Mykees\CommentBundle\Interfaces\CommentableInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\Events;
 
 class CommentListener{
 

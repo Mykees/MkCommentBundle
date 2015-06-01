@@ -54,7 +54,7 @@ class CommentsController extends Controller
         $comment->setModel($manager->getClassShortName($entity));
         $comment->setModelId($ref_id);
         //Spam ?
-        $manager->isSpam($comment) ? $comment->setSpam(1) : $comment->setSpam(0);
+        $manager->isSpam($comment,$request) == true ? $comment->setSpam(1) : $comment->setSpam(0);
 
         return $comment;
     }

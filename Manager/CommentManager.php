@@ -15,6 +15,7 @@ use Mykees\CommentBundle\Libs\Akismet;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\HttpFoundation\Request;
 
 class CommentManager extends Manager{
 
@@ -258,22 +259,23 @@ class CommentManager extends Manager{
     /**
      * Verify if the comment is a spam
      * @param $comment
+     * @param Request $request
      * @return bool
      * @throws \Mykees\CommentBundle\Libs\exception
      */
-    public function isSpam($comment)
+    public function isSpam($comment, Request $request)
     {
         $akismetInit = $this->container->hasParameter('akismet') ? $this->container->getParameter('akismet') : null;
 
         if($akismetInit){
-            $akismet     = new Akismet($akismetInit['website'],$akismetInit['api_key']);
+            $akismet     = new Akismet($akismetInit['website'],$akismetInit['api_key'],$request);
 
             $akismet->setCommentAuthor($comment->getUsername());
             $akismet->setCommentAuthorEmail($comment->getEmail());
             $akismet->setCommentContent($comment->getContent());
             $akismet->setUserIP($comment->getIp());
 
-            return $akismet->isCommentSpam();
+            return $akismet->isCommentSpam($request);
         }
         return false;
     }

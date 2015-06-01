@@ -6,7 +6,7 @@
  * Time: 13:50
  */
 
-namespace Mykees\CommentBundle\Form;
+namespace Mykees\CommentBundle\Form\Type;
 
 
 use Symfony\Component\DependencyInjection\ContainerInterface;

@@ -2,7 +2,7 @@
 
 namespace Mykees\CommentBundle\Controller;
 
-use Mykees\CommentBundle\Form\Type\CommentType;
+use Mykees\CommentBundle\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 

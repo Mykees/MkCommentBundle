@@ -13,13 +13,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class CommentType extends AbstractType {
 
     public $commentClass;
     public $user;
+    public $context;
 
-    public function __construct($commentClass=null, ContainerInterface $container)
+    public function __construct($commentClass=null, SecurityContextInterface $context)
     {
         if(is_object($commentClass))
         {
@@ -28,7 +30,8 @@ class CommentType extends AbstractType {
         }else{
             $this->commentClass = $commentClass;
         }
-        $security_token = $container->get('security.token_storage')->getToken();
+        $this->context = $context;
+        $security_token = $this->context->getToken();
         $this->user = method_exists($security_token,'getUser') ? $security_token->getUser() : array();
     }
 

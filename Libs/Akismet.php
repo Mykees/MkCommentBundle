@@ -23,7 +23,6 @@ namespace Mykees\CommentBundle\Libs;
  * @license		http://www.opensource.org/licenses/bsd-license.php BSD License
  */
 use Exception;
-
 /**
  *	The Akismet PHP5 Class
  *

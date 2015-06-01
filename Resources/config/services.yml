@@ -7,7 +7,7 @@ services:
 #        arguments: [@service_id, "plain_value", %parameter%]
     mykees.comment.form:
         class: Mykees\CommentBundle\Form\Type\CommentType
-        arguments: [%mykees.comment.class%,@service_container]
+        arguments: [%mykees.comment.class%,@security.context]
         tags:
             - { name: form.type, alias: mykees_commentbundle_comment }
 
@@ -18,7 +18,7 @@ services:
 
     mykees.twig.form.extension:
         class: Mykees\CommentBundle\Twig\Extension\CommentExtension
-        arguments: [@service_container]
+        arguments: ["@templating"]
         tags:
             - { name: twig.extension, alias: comment_form }
 
@@ -30,6 +30,6 @@ services:
 
     mk.comment.listener:
         class: Mykees\CommentBundle\Listener\CommentListener
-        arguments: ['@service_container']
+        arguments: ['@mykees.comment.manager']
         tags:
             - { name: doctrine.event_listener, event: preRemove, method: preRemove }

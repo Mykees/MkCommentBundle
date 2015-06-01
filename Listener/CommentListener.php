@@ -9,22 +9,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class CommentListener{
 
-
-    public $container;
     public $manager;
     public $entity;
 
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(CommentManager $manager)
     {
-        $this->container = $container;
+        $this->manager = $manager;
     }
 
 
     public function preRemove(LifecycleEventArgs $args)
     {
         $model = $args->getEntity();
-        $this->manager = $this->container->get('mykees.comment.manager');
 
         if($model instanceof CommentableInterface)
         {

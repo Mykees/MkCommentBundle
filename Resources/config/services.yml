@@ -18,7 +18,7 @@ services:
 
     mykees.twig.form.extension:
         class: Mykees\CommentBundle\Twig\Extension\CommentExtension
-        arguments: [@templating]
+        arguments: [@service_container]
         tags:
             - { name: twig.extension, alias: comment_form }
 

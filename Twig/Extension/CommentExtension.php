@@ -8,8 +8,6 @@
 
 namespace Mykees\CommentBundle\Twig\Extension;
 
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpFoundation\Response;
 
 class CommentExtension extends \Twig_Extension{
 
@@ -19,16 +17,28 @@ class CommentExtension extends \Twig_Extension{
      *
      * @var ContainerInterface
      */
-    protected $templating;
+    protected $container;
 
     /**
      * Initialize tinymce helper
      *
-     * @param EngineInterface $templating
+     * @param ContainerInterface|\Symfony\Component\DependencyInjection\ContainerInterface $container
      */
-    public function __construct(EngineInterface $templating)
+    public function __construct(\Symfony\Component\DependencyInjection\ContainerInterface $container)
     {
-        $this->templating = $templating;
+        $this->container = $container;
+    }
+
+    /**
+     * Gets a service.
+     *
+     * @param string $id The service identifier
+     *
+     * @return object The associated service
+     */
+    public function getService($id)
+    {
+        return $this->container->get($id);
     }
 
 
@@ -53,14 +63,14 @@ class CommentExtension extends \Twig_Extension{
 
     public function commentForm($form)
     {
-        return $this->templating->renderResponse('MykeesCommentBundle:Comment:form.html.twig',[
+        return $this->getService('templating')->render('MykeesCommentBundle:Comment:form.html.twig',[
             'form'=>$form->createView()
         ]);
     }
 
     public function commentsList($comments,$canAdminComment=false)
     {
-        return $this->templating->renderResponse('MykeesCommentBundle:Comment:comments.html.twig',[
+        return $this->getService('templating')->render('MykeesCommentBundle:Comment:comments.html.twig',[
             'comments'=>$comments,
             "canAdminComment"=>$canAdminComment
         ]);

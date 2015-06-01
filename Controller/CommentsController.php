@@ -21,7 +21,7 @@ class CommentsController extends Controller
         $comment_class = $this->container->getParameter('mykees_comment.comment.class');
         $comment = new $comment_class();
         $entity  = $this->gEm()->getRepository("$bundle:$ref")->find($ref_id);
-        $form = $this->createForm(new CommentType($comment,$this->get('security.context')),$comment);
+        $form = $this->createForm(new CommentType($comment,$this->container),$comment);
 
         if('POST' == $request->getMethod())
         {

@@ -3,7 +3,7 @@
 namespace Mykees\CommentBundle\Listener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Mykees\MediaBundle\Interfaces\Mediable;
+use Doctrine\ORM\Events;
 use Mykees\CommentBundle\Interfaces\CommentableInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

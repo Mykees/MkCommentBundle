@@ -50,8 +50,8 @@ class CommentExtension extends \Twig_Extension{
     public function getFunctions()
     {
         return array(
-            'helper_comment' => new \Twig_Function_Method($this, 'CommentForm', array('is_safe' => array('html'))),
-            'comments_list'=> new \Twig_Function_Method($this, 'CommentsList', array('is_safe' => array('html'))),
+            'helper_comment' => new \Twig_Function_Method($this, 'commentForm', array('is_safe' => array('html'))),
+            'comments_list'=> new \Twig_Function_Method($this, 'commentsList', array('is_safe' => array('html'))),
         );
     }
 
@@ -61,14 +61,14 @@ class CommentExtension extends \Twig_Extension{
         );
     }
 
-    public function CommentForm($form)
+    public function commentForm($form)
     {
         return $this->getService('templating')->render('MykeesCommentBundle:Comment:form.html.twig',[
             'form'=>$form->createView()
         ]);
     }
 
-    public function CommentsList($comments,$canAdminComment=false)
+    public function commentsList($comments,$canAdminComment=false)
     {
         return $this->getService('templating')->render('MykeesCommentBundle:Comment:comments.html.twig',[
             'comments'=>$comments,

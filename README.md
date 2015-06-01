@@ -1,5 +1,6 @@
 # Symfony2-CommentBundle
 [![Build Status](https://travis-ci.org/Mykees/MkCommentBundle.svg?branch=master)](https://travis-ci.org/Mykees/MkCommentBundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Mykees/MkCommentBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Mykees/MkCommentBundle/?branch=master)
 
 ## Presentation
 

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CommentsController extends Controller
 {
 
-    public function gEm()
+    private function gEm()
     {
         return $this->getDoctrine()->getManager();
     }
@@ -22,43 +22,72 @@ class CommentsController extends Controller
         $comment = new $comment_class();
         $entity  = $this->gEm()->getRepository("$bundle:$ref")->find($ref_id);
         $form = $this->createForm(new CommentType($comment,$this->container),$comment);
-        $is_join = method_exists($comment,'getUser') ? true : false;
 
         if('POST' == $request->getMethod())
         {
             if($form->handleRequest($request)->isValid())
             {
-                if($this->getUser() != null)
-                {
-                    if($this->getUser()->getUsername() != $comment->getUsername() || $this->getUser()->getEmail() != $comment->getEmail())
-                    {
-                        return $this->redirect($request->headers->get('referer') . '#comments_area');
-                    }
-                    if($is_join)
-                    {
-                        $comment->setUser($this->getUser());
-                    }
-                }
-                $comment->setIp($request->getClientIp());
-                $comment->setModel($manager->getClassShortName($entity));
-                $comment->setModelId($ref_id);
+                $this->initUserInfo($request, $comment);
 
-                //Spam ?
-                $manager->isSpam($comment) ? $comment->setSpam(1) : $comment->setSpam(0);
+                $this->initCommentInfo($manager,$comment,$request,$entity,$ref_id);
 
-                $this->gEm()->persist($comment);
-                $this->gEm()->flush();
+                $this->save($comment);
 
-                $html = $session->has('success_message') ? $session->get('success_message') : "<strong>Merci!</strong> Votre message à bien été posté.";
-                $this->get('session')->getFlashBag()->add('comment_success',$html);
+                $this->initMessageFlash($session);
             }else{
-                $requestData = $request->request->get('mykees_commentbundle_comment');
-                if(!empty($requestData)){
-                    $session->set('form_comment_data',$request->request->get('mykees_commentbundle_comment'));
-                }
+                $this->returnInfoWithError($request,$session);
             }
         }
 
         return $this->redirect($request->headers->get('referer') . '#comments_area');
+    }
+
+    private function save($comment)
+    {
+        $this->gEm()->persist($comment);
+        $this->gEm()->flush();
+    }
+
+    private function initCommentInfo($manager,$comment,$request,$entity,$ref_id)
+    {
+        $comment->setIp($request->getClientIp());
+        $comment->setModel($manager->getClassShortName($entity));
+        $comment->setModelId($ref_id);
+        //Spam ?
+        $manager->isSpam($comment) ? $comment->setSpam(1) : $comment->setSpam(0);
+
+        return $comment;
+    }
+
+    private function initUserInfo($request, $comment)
+    {
+        $is_join = method_exists($comment,'getUser') ? true : false;
+
+        if($this->getUser() !== null)
+        {
+            if($this->getUser()->getUsername() != $comment->getUsername() || $this->getUser()->getEmail() != $comment->getEmail())
+            {
+                return $this->redirect($request->headers->get('referer') . '#comments_area');
+            }
+            if($is_join)
+            {
+                $comment->setUser($this->getUser());
+            }
+        }
+    }
+
+    private function initMessageFlash($session)
+    {
+        $html = $session->has('success_message') ? $session->get('success_message') : "<strong>Merci!</strong> Votre message à bien été posté.";
+        $this->get('session')->getFlashBag()->add('comment_success',$html);
+    }
+
+    private function returnInfoWithError($request,$session)
+    {
+        $requestData = $request->request->get('mykees_commentbundle_comment');
+        if(!empty($requestData))
+        {
+            $session->set('form_comment_data',$request->request->get('mykees_commentbundle_comment'));
+        }
     }
 }

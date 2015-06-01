@@ -6,7 +6,7 @@ services:
 #        class: Mykees\CommentBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
     mykees.comment.form:
-        class: Mykees\CommentBundle\Form\CommentType
+        class: Mykees\CommentBundle\Form\Type\CommentType
         arguments: [%mykees.comment.class%,@service_container]
         tags:
             - { name: form.type, alias: mykees_commentbundle_comment }

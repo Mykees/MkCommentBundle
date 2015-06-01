@@ -204,8 +204,9 @@ class CommentManager extends Manager{
     /**
      * Delete comment
      * @param $model
-     * @param $modelId
+     * @param $comment_id
      * @return bool
+     * @internal param $modelId
      */
     public function deleteComment($model,$comment_id)
     {

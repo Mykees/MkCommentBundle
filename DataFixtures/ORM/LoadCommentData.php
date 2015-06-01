@@ -14,7 +14,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadCommentData implements FixtureInterface,ContainerAwareInterface {
+class LoadCommentData implements FixtureInterface,ContainerAwareInterface{
 
     public $container;
 

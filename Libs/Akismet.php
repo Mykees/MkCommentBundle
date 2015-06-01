@@ -22,6 +22,7 @@ namespace Mykees\CommentBundle\Libs;
  * @copyright	Alex Potsides, {@link http://www.achingbrain.net http://www.achingbrain.net}
  * @license		http://www.opensource.org/licenses/bsd-license.php BSD License
  */
+use Exception;
 
 /**
  *	The Akismet PHP5 Class
@@ -169,15 +170,14 @@ class Akismet
 		
 		return $query_string;
 	}
-	
-	/**
-	 *	Tests for spam.
-	 *
-	 *	Uses the web service provided by {@link http://www.akismet.com Akismet} to see whether or not the submitted comment is spam.  Returns a boolean value.
-	 *
-	 *	@return		bool	True if the comment is spam, false if not
-	 *  @throws		Will throw an exception if the API key passed to the constructor is invalid.
-	 */
+
+    /**
+     *    Tests for spam.
+     *
+     *    Uses the web service provided by {@link http://www.akismet.com Akismet} to see whether or not the submitted comment is spam.  Returns a boolean value.
+     * @return bool True if the comment is spam, false if not
+     * @throws exception
+     */
 	public function isCommentSpam() {
 		$response = $this->sendRequest($this->getQueryString(), $this->wordPressAPIKey . '.rest.akismet.com', '/' . $this->akismetVersion . '/comment-check');
 		
@@ -389,5 +389,3 @@ class SocketWriteRead {
 		return $this->errorString;
 	}
 }
-
-?>

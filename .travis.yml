@@ -14,6 +14,7 @@ before_script:
     - php Tests/Fixtures/bin/console --env=test doctrine:schema:create
     - php Tests/Fixtures/bin/console --env=test doctrine:schema:update --force
     - php Tests/Fixtures/bin/console --env=test assetic:dump
+    - php Tests/Fixtures/bin/console --env=test cache:clear
 
 
 after_script:

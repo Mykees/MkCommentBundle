@@ -7,6 +7,7 @@
  */
 
 namespace Mykees\CommentBundle\Libs;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  *	Utility class used by Akismet

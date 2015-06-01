@@ -28,20 +28,18 @@
       <file leaf-file-name="Akismet.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Libs/Akismet.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5738" max-vertical-offset="9450">
-              <caret line="207" column="43" selection-start-line="207" selection-start-column="43" selection-end-line="207" selection-end-column="43" />
-              <folding>
-                <element signature="e#44#89#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9450">
+              <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="4" selection-end-column="60" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SocketWriteRead.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SocketWriteRead.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Libs/SocketWriteRead.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="3180">
-              <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.13333334" vertical-offset="0" max-vertical-offset="3210">
+              <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -93,10 +91,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="services.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Resources/config/services.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50711936" vertical-offset="107" max-vertical-offset="1200">
+            <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="1200">
               <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="20" selection-end-column="39" />
               <folding />
             </state>
@@ -138,12 +136,12 @@
         <option value="$PROJECT_DIR$/Manager/CommentManager.php" />
         <option value="$PROJECT_DIR$/Listener/CommentListener.php" />
         <option value="$PROJECT_DIR$/Libs/Akismet.php" />
-        <option value="$PROJECT_DIR$/Libs/SocketWriteRead.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/Form/Type/CommentType.php" />
         <option value="$PROJECT_DIR$/Controller/CommentsController.php" />
         <option value="$PROJECT_DIR$/Resources/config/services.yml" />
         <option value="$PROJECT_DIR$/Twig/Extension/CommentExtension.php" />
+        <option value="$PROJECT_DIR$/Libs/SocketWriteRead.php" />
       </list>
     </option>
   </component>
@@ -413,29 +411,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/SocketWriteRead.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="3180">
-          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="1590">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/Akismet.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5738" max-vertical-offset="9450">
-          <caret line="207" column="43" selection-start-line="207" selection-start-column="43" selection-end-line="207" selection-end-column="43" />
-          <folding>
-            <element signature="e#44#89#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -489,8 +469,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50711936" vertical-offset="107" max-vertical-offset="1200">
+        <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="1200">
           <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="20" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/Akismet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9450">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="4" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/SocketWriteRead.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13333334" vertical-offset="0" max-vertical-offset="3210">
+          <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
           <folding />
         </state>
       </provider>

@@ -9,7 +9,7 @@ env:
 before_script:
     - mysql -e "create database test;"
     - composer self-update
-    - composer require symfony/symfony:${SYMFONY_VERSION}
+    - composer require symfony/symfony:${SYMFONY_VERSION} --no-update
     - composer install --dev
     - php Tests/Fixtures/bin/console --env=test doctrine:schema:create
     - php Tests/Fixtures/bin/console --env=test doctrine:schema:update --force

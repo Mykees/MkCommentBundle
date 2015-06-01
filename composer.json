@@ -3,6 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony Comment Bundle",
     "keywords": ["symfony comment bundle", "comment"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Rafidison Michaël",

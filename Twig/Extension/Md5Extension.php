@@ -18,4 +18,5 @@ class Md5Extension extends \Twig_Extension
     public function getName() {
         return 'md5';
     }
+
 }

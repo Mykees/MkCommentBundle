@@ -279,5 +279,4 @@ class CommentManager extends Manager{
         }
         return false;
     }
-
 }

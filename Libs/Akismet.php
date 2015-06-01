@@ -2,6 +2,7 @@
 namespace Mykees\CommentBundle\Libs;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Config\Definition\Exception\Exception;
 /**
  * Akismet anti-comment spam service
  *

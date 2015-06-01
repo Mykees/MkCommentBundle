@@ -30,6 +30,6 @@ services:
 
     mk.comment.listener:
         class: Mykees\CommentBundle\Listener\CommentListener
-        arguments: ['@mykees.comment.manager']
+        arguments: ['@service_container']
         tags:
             - { name: doctrine.event_listener, event: preRemove, method: preRemove }

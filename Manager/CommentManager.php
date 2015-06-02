@@ -12,7 +12,6 @@ namespace Mykees\CommentBundle\Manager;
 use Doctrine\ORM\EntityManager;
 use Mykees\CommentBundle\Interfaces\CommentableInterface;
 use Mykees\CommentBundle\Libs\Akismet;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +41,7 @@ class CommentManager extends Manager{
         $security_token = $context->getToken();
         $this->user = method_exists($security_token,'getUser') ? $security_token->getUser() : array();
         $this->repository = $entityManager->getRepository($this->comment_class);
-        $this->user = $fos_user_class != null ? $fos_user_class : null;
+        $this->user = $fos_user_class !== null ? $fos_user_class : null;
     }
 
     /**

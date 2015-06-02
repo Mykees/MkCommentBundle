@@ -21,7 +21,7 @@ class CommentManagerTest extends WebTestCase{
     protected $context;
     protected $session;
     protected $formType;
-    protected $class;
+    protected $comment_class;
     protected $fos_user_class;
 
 
@@ -48,8 +48,8 @@ class CommentManagerTest extends WebTestCase{
             ->disableOriginalConstructor()
             ->getMock();
         $this->container = $this->client->getContainer();
-        $this->class = $this->container->getContainer()->getParameter('mykees_comment.comment.class');
-        $this->fos_user_class = $this->container->getContainer()->getParameter('fos_user.model.user.class');
+        $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
+        $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
 
         $fixtures = [
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
@@ -62,21 +62,21 @@ class CommentManagerTest extends WebTestCase{
 
     public function testFindCommentsByCriteria()
     {
-        $manager = new CommentManager($this->em,$this->form,$this->router,$this->context,$this->session,$this->formType,$this->class,$this->fos_user_class);
+        $manager = new CommentManager($this->em,$this->form,$this->router,$this->context,$this->session,$this->formType,$this->comment_class,$this->fos_user_class);
         $count = count($manager->findAllComments(['model'=>'Post','modelId'=>1]));
         $this->assertEquals(2, $count);
     }
 
     public function testFindAllComments()
     {
-        $manager = new CommentManager($this->em,$this->form,$this->router,$this->context,$this->session,$this->formType,$this->class,$this->fos_user_class);
+        $manager = new CommentManager($this->em,$this->form,$this->router,$this->context,$this->session,$this->formType,$this->comment_class,$this->fos_user_class);
         $count = count($manager->findAllComments());
         $this->assertEquals(5, $count);
     }
 
     public function testRemoveComment()
     {
-        $manager = new CommentManager($this->em,$this->form,$this->router,$this->context,$this->session,$this->formType,$this->class,$this->fos_user_class);
+        $manager = new CommentManager($this->em,$this->form,$this->router,$this->context,$this->session,$this->formType,$this->comment_class,$this->fos_user_class);
         $manager->deleteComment('Post',38);
         $count = count($manager->findAllComments());
         $this->assertEquals(4, $count);

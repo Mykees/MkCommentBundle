@@ -9,3 +9,6 @@ mvc_blog_admin:
 mykees_comment:
     resource: "@MykeesCommentBundle/Resources/config/routing.yml"
     prefix:   /comment
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

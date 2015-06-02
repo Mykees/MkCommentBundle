@@ -13,7 +13,7 @@ services:
 
     mykees.comment.manager:
         class: Mykees\CommentBundle\Manager\CommentManager
-        arguments: [@doctrine.orm.entity_manager, @form.factory, @router,@service_container]
+        arguments: [@doctrine.orm.entity_manager, @form.factory, @router, @security.context, @session, @mykees.comment.form, %mykees_comment.comment.class%,"@=container.hasParameter('fos_user.model.user.class') ? parameter('fos_user.model.user.class') : null"]
 
 
     mykees.twig.form.extension:

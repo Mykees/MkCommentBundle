@@ -16,29 +16,33 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Mykees\CommentBundle\Form\Type\CommentType;
 
 class CommentManager extends Manager{
 
     protected $em;
     protected $formFactory;
     protected $router;
-    protected $container;
     protected $user;
     protected $comment_class;
     protected $repository;
+    protected $session;
 
 
-    public function __construct(EntityManager $entityManager, FormFactory $formFactory, Router $router, ContainerInterface $container)
+    public function __construct(EntityManager $entityManager, FormFactory $formFactory, Router $router, SecurityContextInterface $context, Session $session, CommentType $formType, $class, $fos_user_class)
     {
         $this->em           = $entityManager;
         $this->formFactory  = $formFactory;
         $this->router       = $router;
-        $this->container    = $container;
-        $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
-        $security_token = $container->get('security.token_storage')->getToken();
+        $this->comment_class = $class;
+        $this->formType = $formType;
+        $this->session = $session;
+        $security_token = $context->getToken();
         $this->user = method_exists($security_token,'getUser') ? $security_token->getUser() : array();
         $this->repository = $entityManager->getRepository($this->comment_class);
-        $this->user = $this->container->hasParameter('fos_user.model.user.class') ? '\\'.$this->container->getParameter('fos_user.model.user.class') : null;
+        $this->user = $fos_user_class != null ? $fos_user_class : null;
     }
 
     /**
@@ -48,32 +52,30 @@ class CommentManager extends Manager{
      */
     public function createForm(CommentableInterface $referer, $success_message=null)
     {
-        $session  = $this->container->get('session');
-        $dataForm = $session->get('form_comment_data');
+        $dataForm = $this->session->get('form_comment_data');
         $getId    = $this->primaryKey($referer);
         $refName  = $this->getClassShortName ($referer);
         $bundle   = $this->getBundleShortName($referer);
-        $form     = $this->container->get('mykees.comment.form');
         $route    = $this->router->generate('mykees_comment_manage', ['bundle'=>$bundle,'ref'=>$refName,'ref_id'=>$referer->$getId()]);
 
-        if($session->has('success_message'))
+        if($this->session->has('success_message'))
         {
-            $session->remove('success_message');
+            $this->session->remove('success_message');
         }
         if($success_message)
         {
-            $session->set('success_message',$success_message);
+            $this->session->set('success_message',$success_message);
         }
 
         $form = $this->formFactory->create(
-            $form,
+            $this->formType,
             new $this->comment_class(),
             ['action'=> $route,'method'=> 'POST']
         );
 
         if( !empty($dataForm) ){
             $form->bind($dataForm);
-            $session->remove('form_comment_data');
+            $this->session->remove('form_comment_data');
         }
 
         return $form;
@@ -203,7 +205,7 @@ class CommentManager extends Manager{
     /**
      * Delete comment
      * @param $model
-     * @param $modelId
+     * @param $comment_id
      * @return bool
      */
     public function deleteComment($model,$comment_id)
@@ -237,7 +239,7 @@ class CommentManager extends Manager{
     public function preDeleteComment(CommentableInterface $referer)
     {
         $comments = $this->findComments($referer);
-        
+
         foreach($comments['comments'] as $comment)
         {
             if(count($comment->replies) >= 1)
@@ -260,12 +262,13 @@ class CommentManager extends Manager{
      * Verify if the comment is a spam
      * @param $comment
      * @param Request $request
+     * @param ContainerInterface $container
      * @return bool
-     * @throws \Mykees\CommentBundle\Libs\exception
+     * @throws \Symfony\Component\Config\Definition\Exception\Exception
      */
-    public function isSpam($comment, Request $request)
+    public function isSpam($comment, Request $request, ContainerInterface $container)
     {
-        $akismetInit = $this->container->hasParameter('akismet') ? $this->container->getParameter('akismet') : null;
+        $akismetInit = $container->hasParameter('akismet') ? $container->getParameter('akismet') : null;
 
         if($akismetInit){
             $akismet     = new Akismet($akismetInit['website'],$akismetInit['api_key'],$request);

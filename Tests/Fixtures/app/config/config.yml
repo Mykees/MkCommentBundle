@@ -63,6 +63,6 @@ mykees_comment:
     comment_class: Mvc\BlogBundle\Entity\Comment
 
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver: orm
     firewall_name: main
     user_class: Mvc\BlogBundle\Entity\User

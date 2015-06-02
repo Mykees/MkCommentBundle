@@ -32,6 +32,8 @@ class CommentManagerTest extends WebTestCase{
             ->get('doctrine')
             ->getManager()
         ;
+        $this->container = $this->client->getContainer();
+        
         $this->form = $this->getMockBuilder('Symfony\Component\Form\FormFactory')
             ->disableOriginalConstructor()
             ->getMock();
@@ -47,7 +49,7 @@ class CommentManagerTest extends WebTestCase{
         $this->formType = $this->getMockBuilder('Mykees\CommentBundle\Form\Type\CommentType')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->container = $this->client->getContainer();
+
         $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
         $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
 

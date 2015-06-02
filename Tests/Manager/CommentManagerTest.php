@@ -47,9 +47,9 @@ class CommentManagerTest extends WebTestCase{
         $this->formType = $this->getMockBuilder('Mykees\CommentBundle\Form\Type\CommentType')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->class = static::$kernel->getContainer()->getParameter('mykees_comment.comment.class');
-        $this->fos_user_class = static::$kernel->getContainer()->getParameter('fos_user.model.user.class');
         $this->container = $this->client->getContainer();
+        $this->class = $this->container->getContainer()->getParameter('mykees_comment.comment.class');
+        $this->fos_user_class = $this->container->getContainer()->getParameter('fos_user.model.user.class');
 
         $fixtures = [
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',

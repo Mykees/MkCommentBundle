@@ -8,38 +8,9 @@
 
 namespace Mykees\CommentBundle\Twig\Extension;
 
-
 class CommentExtension extends \Twig_Extension{
 
 
-    /**
-     * Container
-     *
-     * @var ContainerInterface
-     */
-    protected $container;
-
-    /**
-     * Initialize tinymce helper
-     *
-     * @param ContainerInterface|\Symfony\Component\DependencyInjection\ContainerInterface $container
-     */
-    public function __construct(\Symfony\Component\DependencyInjection\ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * Gets a service.
-     *
-     * @param string $id The service identifier
-     *
-     * @return object The associated service
-     */
-    public function getService($id)
-    {
-        return $this->container->get($id);
-    }
 
 
     /**
@@ -50,8 +21,14 @@ class CommentExtension extends \Twig_Extension{
     public function getFunctions()
     {
         return array(
-            'helper_comment' => new \Twig_Function_Method($this, 'commentForm', array('is_safe' => array('html'))),
-            'comments_list'=> new \Twig_Function_Method($this, 'commentsList', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('helper_comment', [$this, 'commentForm'], [
+                'is_safe'=>array('html'),
+                'needs_environment'=>true
+            ]),
+            new \Twig_SimpleFunction('comments_list', [$this, 'commentsList'], [
+                'is_safe'=>['html'],
+                'needs_environment'=>true
+            ]),
         );
     }
 
@@ -61,16 +38,16 @@ class CommentExtension extends \Twig_Extension{
         );
     }
 
-    public function commentForm($form)
+    public function commentForm(\Twig_Environment $env,$form)
     {
-        return $this->getService('templating')->render('MykeesCommentBundle:Comment:form.html.twig',[
+        return $env->render('MykeesCommentBundle:Comment:form.html.twig',[
             'form'=>$form->createView()
         ]);
     }
 
-    public function commentsList($comments,$canAdminComment=false)
+    public function commentsList(\Twig_Environment $env,$comments,$canAdminComment=false)
     {
-        return $this->getService('templating')->render('MykeesCommentBundle:Comment:comments.html.twig',[
+        return $env->render('MykeesCommentBundle:Comment:comments.html.twig',[
             'comments'=>$comments,
             "canAdminComment"=>$canAdminComment
         ]);

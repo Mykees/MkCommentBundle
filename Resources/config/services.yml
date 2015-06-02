@@ -18,14 +18,13 @@ services:
 
     mykees.twig.form.extension:
         class: Mykees\CommentBundle\Twig\Extension\CommentExtension
-        arguments: [@service_container]
         tags:
             - { name: twig.extension, alias: comment_form }
 
     mykees.twig.md5extension:
         class: Mykees\CommentBundle\Twig\Extension\Md5Extension
         tags:
-            - { name: twig.extension }
+            - { name: twig.extension, alias: md5_ext }
 
 
     mk.comment.listener:

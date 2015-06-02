@@ -33,7 +33,9 @@ class CommentManagerTest extends WebTestCase{
             ->getManager()
         ;
         $this->container = $this->client->getContainer();
-        
+        $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
+        $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
+
         $this->form = $this->getMockBuilder('Symfony\Component\Form\FormFactory')
             ->disableOriginalConstructor()
             ->getMock();
@@ -50,14 +52,12 @@ class CommentManagerTest extends WebTestCase{
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
-        $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
-
         $fixtures = [
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
             'Mvc\BlogBundle\DataFixtures\ORM\LoadPostsData',
         ];
         $this->loadFixtures($fixtures);
+
         parent::setUp();
     }
 

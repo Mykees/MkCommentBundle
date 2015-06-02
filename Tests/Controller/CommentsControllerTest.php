@@ -50,7 +50,7 @@ class CommentsControllerTest extends WebTestCase{
 
     public function testRemoveAssociateComment()
     {
-      $crawler = $this->client->request('GET', '/admin/delete/5');
+      $this->client->request('GET', '/admin/delete/5');
       $this->assertEquals(302,$this->client->getResponse()->getStatusCode());
 
       $count = count($this->manager->findAllComments());

@@ -262,14 +262,12 @@ class CommentManager extends Manager{
      * Verify if the comment is a spam
      * @param $comment
      * @param Request $request
-     * @param ContainerInterface $container
+     * @param $akismetInit
      * @return bool
      * @throws \Symfony\Component\Config\Definition\Exception\Exception
      */
-    public function isSpam($comment, Request $request, ContainerInterface $container)
+    public function isSpam($comment, Request $request, $akismetInit)
     {
-        $akismetInit = $container->hasParameter('akismet') ? $container->getParameter('akismet') : null;
-
         if($akismetInit){
             $akismet     = new Akismet($akismetInit['website'],$akismetInit['api_key'],$request);
 

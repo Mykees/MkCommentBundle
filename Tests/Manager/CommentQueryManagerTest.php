@@ -23,14 +23,8 @@ class CommentQueryManagerTest extends WebTestCase{
     public function setUp()
     {
         $this->client = static::createClient();
-        $this->em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager()
-        ;
         $this->container = $this->client->getContainer();
-        
         $this->registry =  $this->container->get('doctrine');
-        
         $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
 
         $fixtures = [

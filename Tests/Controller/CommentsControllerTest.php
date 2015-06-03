@@ -19,19 +19,14 @@ class CommentsControllerTest extends WebTestCase{
     protected $em;
     protected $commentClass;
     protected $request;
+    protected $managerQuery;
 
    public function setUp()
    {
-
-
        $this->client = static::createClient();
        $this->container = $this->client->getContainer();
        $this->manager = $this->container->get('mykees.comment.manager');
        $this->managerQuery = $this->container->get('mykees.comment.query.manager');
-       $this->em = static::$kernel->getContainer()
-           ->get('doctrine')
-           ->getManager()
-       ;
 
        $fixtures = [
            'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
@@ -75,6 +70,7 @@ class CommentsControllerTest extends WebTestCase{
         $this->assertEquals(302,$this->client->getResponse()->getStatusCode());
 
         $count = count($this->managerQuery->findAllComments());
+
         $this->assertEquals(6, $count);
     }
 
@@ -91,6 +87,7 @@ class CommentsControllerTest extends WebTestCase{
         $this->client->submit($form);
 
         $count = count($this->managerQuery->findAllComments());
+
         $this->assertEquals(5, $count);
     }
 
@@ -108,6 +105,7 @@ class CommentsControllerTest extends WebTestCase{
         $this->client->submit($form);
 
         $count = count($this->managerQuery->findAllComments());
+
         $this->assertEquals(5, $count);
     }
 

@@ -29,7 +29,6 @@ class CommentQueryManagerTest extends WebTestCase{
             ->get('doctrine')
             ->getManager()
         ;
-
         $this->registry =  $this->container->get('doctrine');
         $this->context = $this->getMockBuilder('Symfony\Component\Security\Core\SecurityContextInterface')
             ->disableOriginalConstructor()

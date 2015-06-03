@@ -13,8 +13,11 @@ services:
 
     mykees.comment.manager:
         class: Mykees\CommentBundle\Manager\CommentManager
-        arguments: [@doctrine.orm.entity_manager, @form.factory, @router, @security.context, @session, @mykees.comment.form, %mykees_comment.comment.class%,"@=container.hasParameter('fos_user.model.user.class') ? parameter('fos_user.model.user.class') : null"]
+        arguments: [@form.factory, @router, @session, @mykees.comment.form, %mykees_comment.comment.class%]
 
+    mykees.comment.query.manager:
+        class: Mykees\CommentBundle\Manager\CommentQueryManager
+        arguments: [@doctrine, @security.context, %mykees_comment.comment.class%, "@=container.hasParameter('fos_user.model.user.class') ? parameter('fos_user.model.user.class') : null"]
 
     mykees.twig.form.extension:
         class: Mykees\CommentBundle\Twig\Extension\CommentExtension
@@ -29,6 +32,6 @@ services:
 
     mk.comment.listener:
         class: Mykees\CommentBundle\Listener\CommentListener
-        arguments: ['@service_container']
+        arguments: [@doctrine, @security.context, %mykees_comment.comment.class%, "@=container.hasParameter('fos_user.model.user.class') ? parameter('fos_user.model.user.class') : null"]
         tags:
             - { name: doctrine.event_listener, event: preRemove, method: preRemove }

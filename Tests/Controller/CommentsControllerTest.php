@@ -27,6 +27,7 @@ class CommentsControllerTest extends WebTestCase{
        $this->client = static::createClient();
        $this->container = $this->client->getContainer();
        $this->manager = $this->container->get('mykees.comment.manager');
+       $this->managerQuery = $this->container->get('mykees.comment.query.manager');
        $this->em = static::$kernel->getContainer()
            ->get('doctrine')
            ->getManager()
@@ -50,10 +51,10 @@ class CommentsControllerTest extends WebTestCase{
 
     public function testRemoveAssociateComment()
     {
-      $this->client->request('GET', '/admin/delete/5');
+      $crawler = $this->client->request('GET', '/admin/delete/5');
       $this->assertEquals(302,$this->client->getResponse()->getStatusCode());
 
-      $count = count($this->manager->findAllComments());
+      $count = count($this->managerQuery->findAllComments());
 
       $this->assertEquals(4, $count);
     }
@@ -73,7 +74,7 @@ class CommentsControllerTest extends WebTestCase{
 
         $this->assertEquals(302,$this->client->getResponse()->getStatusCode());
 
-        $count = count($this->manager->findAllComments());
+        $count = count($this->managerQuery->findAllComments());
         $this->assertEquals(6, $count);
     }
 
@@ -90,7 +91,7 @@ class CommentsControllerTest extends WebTestCase{
 
         $this->client->submit($form);
 
-        $count = count($this->manager->findAllComments());
+        $count = count($this->managerQuery->findAllComments());
         $this->assertEquals(5, $count);
     }
 
@@ -107,7 +108,7 @@ class CommentsControllerTest extends WebTestCase{
 
         $this->client->submit($form);
 
-        $count = count($this->manager->findAllComments());
+        $count = count($this->managerQuery->findAllComments());
         $this->assertEquals(5, $count);
     }
 

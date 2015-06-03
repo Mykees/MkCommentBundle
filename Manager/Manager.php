@@ -42,26 +42,10 @@ abstract class Manager {
         return $reflection->getShortName();
     }
 
-    public function primaryKey ( $ref ) {
-        $bundleName = $this->getBundleShortName($ref);
-        $class 		= $this->getClassShortName ( $ref );
-        $meta 		= $this->em->getClassMetadata("$bundleName:$class");
-        $pk 		= $meta->getSingleIdentifierFieldName();
-
-        $getter     = "get".ucfirst($pk);
-        return $getter;
-    }
-
     public function getClassName ( $ref ) {
         $reflection = new \ReflectionClass( $ref );
 
         return $reflection->getName();
     }
 
-
-
-    protected function findComment()
-    {
-
-    }
 }

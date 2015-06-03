@@ -2,13 +2,11 @@
 namespace Mykees\CommentBundle\Manager;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use Mykees\CommentBundle\Interfaces\CommentableInterface;
 
 class CommentQueryManager extends Manager{
 
     private $em;
-    private $user;
     private $repository;
     private $comment_class;
 
@@ -194,5 +192,4 @@ class CommentQueryManager extends Manager{
 
         return true;
     }
-
 }

@@ -43,6 +43,7 @@ class CommentQueryManagerTest extends WebTestCase{
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
             'Mvc\BlogBundle\DataFixtures\ORM\LoadPostsData',
         ];
+        
         $this->loadFixtures($fixtures);
 
         parent::setUp();

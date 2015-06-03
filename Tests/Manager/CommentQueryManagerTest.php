@@ -29,15 +29,16 @@ class CommentQueryManagerTest extends WebTestCase{
             ->get('doctrine')
             ->getManager()
         ;
-        $this->container = $this->client->getContainer();
-        $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
-        $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
 
         $this->registry =  $this->container->get('doctrine');
         $this->context = $this->getMockBuilder('Symfony\Component\Security\Core\SecurityContextInterface')
             ->disableOriginalConstructor()
             ->getMock();
         
+        $this->container = $this->client->getContainer();
+        $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
+        $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
+
         $fixtures = [
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
             'Mvc\BlogBundle\DataFixtures\ORM\LoadPostsData',

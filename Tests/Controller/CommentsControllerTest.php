@@ -80,7 +80,6 @@ class CommentsControllerTest extends WebTestCase{
 
     public function testAddCommentWithEmptyName()
     {
-          
         $crawler = $this->client->request('GET','/blog/title-1-13');
         $form = $crawler->selectButton('Submit')->form([
             'mykees_commentbundle_comment[username]'=>'',

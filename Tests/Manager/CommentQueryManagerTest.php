@@ -18,7 +18,6 @@ class CommentQueryManagerTest extends WebTestCase{
     protected $em;
     protected $registry;
     protected $comment_class;
-    protected $fos_user_class;
 
 
     public function setUp()
@@ -33,7 +32,6 @@ class CommentQueryManagerTest extends WebTestCase{
         $this->registry =  $this->container->get('doctrine');
         
         $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
-        $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
 
         $fixtures = [
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
@@ -47,21 +45,21 @@ class CommentQueryManagerTest extends WebTestCase{
 
     public function testFindCommentsByCriteria()
     {
-        $manager = new CommentQueryManager($this->registry,$this->comment_class,$this->fos_user_class);
+        $manager = new CommentQueryManager($this->registry,$this->comment_class);
         $count = count($manager->findAllComments(['model'=>'Post','modelId'=>1]));
         $this->assertEquals(2, $count);
     }
 
     public function testFindAllComments()
     {
-        $manager = new CommentQueryManager($this->registry,$this->comment_class,$this->fos_user_class);
+        $manager = new CommentQueryManager($this->registry,$this->comment_class);
         $count = count($manager->findAllComments());
         $this->assertEquals(5, $count);
     }
 
     public function testRemoveComment()
     {
-        $manager = new CommentQueryManager($this->registry,$this->comment_class,$this->fos_user_class);
+        $manager = new CommentQueryManager($this->registry,$this->comment_class);
         $manager->deleteComment('Post',38);
         $count = count($manager->findAllComments());
         $this->assertEquals(4, $count);

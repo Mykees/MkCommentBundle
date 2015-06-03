@@ -64,6 +64,7 @@ class CommentQueryManager extends Manager{
     {
         $is_join = method_exists($this->comment_class,'getUser') ? true : false;
         $qb = $this->repository->createQueryBuilder('c');
+        $comments = array();
 
         if($is_join)
         {

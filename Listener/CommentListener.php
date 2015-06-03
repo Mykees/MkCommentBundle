@@ -32,7 +32,7 @@ class CommentListener{
 
         if($model instanceof CommentableInterface)
         {
-            $manager = new CommentQueryManager($this->managerRegistry,$this->class,$this->fos_user);
+            $manager = new CommentQueryManager($this->managerRegistry,$this->class);
             $manager->preDeleteComment($model);
         }
     }

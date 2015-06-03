@@ -43,7 +43,7 @@ class CommentsControllerTest extends WebTestCase{
 
     public function testCountCommentHtmlList()
     {
-        $crawler = $this->client->request('GET', '/blog/title-1-1');
+        $this->client->request('GET', '/blog/title-1-1');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
         $this->assertEquals(2,$crawler->filter('.comment__list')->count());
     }

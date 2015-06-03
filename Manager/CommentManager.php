@@ -25,6 +25,7 @@ class CommentManager extends Manager{
     protected $comment_class;
     protected $repository;
     protected $session;
+    protected $formType;
 
 
     public function __construct(FormFactory $formFactory, Router $router, Session $session, CommentType $formType, $class)

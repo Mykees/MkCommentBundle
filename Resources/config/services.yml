@@ -17,7 +17,7 @@ services:
 
     mykees.comment.query.manager:
         class: Mykees\CommentBundle\Manager\CommentQueryManager
-        arguments: [@doctrine, %mykees_comment.comment.class%, "@=container.hasParameter('fos_user.model.user.class') ? parameter('fos_user.model.user.class') : null"]
+        arguments: [@doctrine, %mykees_comment.comment.class%]
 
     mykees.twig.form.extension:
         class: Mykees\CommentBundle\Twig\Extension\CommentExtension

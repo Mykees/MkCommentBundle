@@ -10,7 +10,7 @@ class CommentQueryManager extends Manager{
     private $repository;
     private $comment_class;
 
-    public function __construct(ManagerRegistry $managerRegistry, $class, $fos_user_class)
+    public function __construct(ManagerRegistry $managerRegistry, $class)
     {
         $this->em       = $managerRegistry->getManager();
         $this->comment_class = $class;

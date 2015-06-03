@@ -58,7 +58,7 @@ class SocketWriteRead {
 
         $fs = fsockopen($this->host, $this->port, $this->errorNumber, $this->errorString, 3);
 
-        if($this->errorNumber != 0) {
+        if($this->errorNumber !== 0) {
             throw new Exception('Error connecting to host: ' . $this->host . ' Error number: ' . $this->errorNumber . ' Error message: ' . $this->errorString);
         }
 

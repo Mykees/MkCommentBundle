@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+
             new Mvc\BlogBundle\MvcBlogBundle(),
             new Mykees\CommentBundle\MykeesCommentBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),

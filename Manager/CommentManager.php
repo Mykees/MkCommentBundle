@@ -22,7 +22,6 @@ class CommentManager extends Manager{
     protected $em;
     protected $formFactory;
     protected $router;
-    protected $user;
     protected $comment_class;
     protected $repository;
     protected $session;

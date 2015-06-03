@@ -5,7 +5,6 @@ namespace Mykees\CommentBundle\Listener;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Mykees\CommentBundle\Interfaces\CommentableInterface;
 use Doctrine\ORM\Events;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use Mykees\CommentBundle\Manager\CommentQueryManager;
 use Doctrine\Common\Persistence\ManagerRegistry;
 

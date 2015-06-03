@@ -43,7 +43,7 @@ class CommentsControllerTest extends WebTestCase{
 
     public function testCountCommentHtmlList()
     {
-        $this->client->request('GET', '/blog/title-1-1');
+        $crawler = $this->client->request('GET', '/blog/title-1-1');
         $this->assertEquals(200,$this->client->getResponse()->getStatusCode());
         $this->assertEquals(2,$crawler->filter('.comment__list')->count());
     }
@@ -51,7 +51,7 @@ class CommentsControllerTest extends WebTestCase{
 
     public function testRemoveAssociateComment()
     {
-      $crawler = $this->client->request('GET', '/admin/delete/5');
+      $this->client->request('GET', '/admin/delete/5');
       $this->assertEquals(302,$this->client->getResponse()->getStatusCode());
 
       $count = count($this->managerQuery->findAllComments());

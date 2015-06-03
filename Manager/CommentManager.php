@@ -9,7 +9,6 @@
 namespace Mykees\CommentBundle\Manager;
 
 
-use Doctrine\ORM\EntityManager;
 use Mykees\CommentBundle\Interfaces\CommentableInterface;
 use Mykees\CommentBundle\Libs\Akismet;
 use Symfony\Component\Form\FormFactory;

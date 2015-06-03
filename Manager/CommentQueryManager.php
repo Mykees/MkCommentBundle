@@ -7,20 +7,17 @@ use Mykees\CommentBundle\Interfaces\CommentableInterface;
 
 class CommentQueryManager extends Manager{
 
-	private $em;
-	private $user;
-	private $repository;
-	private $comment_class;
+    private $em;
+    private $user;
+    private $repository;
+    private $comment_class;
 
-	public function __construct(ManagerRegistry $managerRegistry, SecurityContextInterface $context, $class, $fos_user_class)
-	{
+    public function __construct(ManagerRegistry $managerRegistry, $class, $fos_user_class)
+    {
         $this->em       = $managerRegistry->getManager();
-        $security_token = $context->getToken();
         $this->comment_class = $class;
-        $this->user = method_exists($security_token,'getUser') ? $security_token->getUser() : array();
         $this->repository = $managerRegistry->getRepository($this->comment_class);
-        $this->user = $fos_user_class !== null ? $fos_user_class : null;
-	}
+    }
 
 
     /**

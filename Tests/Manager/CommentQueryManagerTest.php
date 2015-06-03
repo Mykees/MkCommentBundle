@@ -17,7 +17,6 @@ class CommentQueryManagerTest extends WebTestCase{
     protected $container;
     protected $em;
     protected $registry;
-    protected $context;
     protected $comment_class;
     protected $fos_user_class;
 
@@ -32,9 +31,6 @@ class CommentQueryManagerTest extends WebTestCase{
         $this->container = $this->client->getContainer();
         
         $this->registry =  $this->container->get('doctrine');
-        $this->context = $this->getMockBuilder('Symfony\Component\Security\Core\SecurityContextInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
         
         $this->comment_class = $this->container->getParameter('mykees_comment.comment.class');
         $this->fos_user_class = $this->container->getParameter('fos_user.model.user.class');
@@ -43,7 +39,6 @@ class CommentQueryManagerTest extends WebTestCase{
             'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
             'Mvc\BlogBundle\DataFixtures\ORM\LoadPostsData',
         ];
-        
         $this->loadFixtures($fixtures);
 
         parent::setUp();
@@ -52,21 +47,21 @@ class CommentQueryManagerTest extends WebTestCase{
 
     public function testFindCommentsByCriteria()
     {
-        $manager = new CommentQueryManager($this->registry,$this->context,$this->comment_class,$this->fos_user_class);
+        $manager = new CommentQueryManager($this->registry,$this->comment_class,$this->fos_user_class);
         $count = count($manager->findAllComments(['model'=>'Post','modelId'=>1]));
         $this->assertEquals(2, $count);
     }
 
     public function testFindAllComments()
     {
-        $manager = new CommentQueryManager($this->registry,$this->context,$this->comment_class,$this->fos_user_class);
+        $manager = new CommentQueryManager($this->registry,$this->comment_class,$this->fos_user_class);
         $count = count($manager->findAllComments());
         $this->assertEquals(5, $count);
     }
 
     public function testRemoveComment()
     {
-        $manager = new CommentQueryManager($this->registry,$this->context,$this->comment_class,$this->fos_user_class);
+        $manager = new CommentQueryManager($this->registry,$this->comment_class,$this->fos_user_class);
         $manager->deleteComment('Post',38);
         $count = count($manager->findAllComments());
         $this->assertEquals(4, $count);

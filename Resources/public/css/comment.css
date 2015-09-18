@@ -1,0 +1,48 @@
+.reply{
+    font-size: 11px;
+    font-weight: bold;
+    color: #A6A6A6;
+}
+.reply:hover{
+    text-decoration: none;
+    color: #6B6A6A;
+}
+
+.comment-meta{
+    margin-bottom: 13px;
+}
+
+.comment-meta-username{
+    font-weight: bold;
+}
+
+.comment-meta-date{
+    color: #AAA;
+    font-size: 12px;
+}
+
+.comment-area{
+    margin: 30px 0px;
+}
+.cancel-reply{
+    display:none;
+}
+
+.comment-replies{
+    margin-left: 65px;
+}
+
+.comment-list{
+    margin-bottom: 30px;
+}
+
+.btn-delete-admin{
+    font-size: 10px;
+}
+.ajax-loader{
+    display: none;
+}
+
+.form-hidden-field{
+    display:none;
+}

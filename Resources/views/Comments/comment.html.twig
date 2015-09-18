@@ -1,0 +1,57 @@
+<div class="comment-list {{ comment.getParentId > 0 ? 'is-reply' : '' }}" id="comment-{{ comment.id }}">
+    <div class="row">
+        <div class="col-xs-1">
+            {% if comment.user.email is defined %}
+                <img src="http://www.gravatar.com/avatar/{{ comment.user.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+            {% else %}
+                <img src="http://www.gravatar.com/avatar/{{ comment.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+            {% endif %}
+        </div>
+        <div class="col-xs-10">
+
+                <div class="comment-meta">
+                    {% block mykees_comment_metas %}
+                        <span class="comment-meta-username">{{ comment.username|capitalize }}</span>
+                        <span class="comment-meta-date">
+                            {% if app.request.locale == "fr" %}
+                                &nbsp;il y a {{ date_interval(comment.createdAt.date,"fr") }}
+                            {% else %}
+                                &nbsp;{{ date_interval(comment.createdAt.date,app.request.locale) }} ago
+                            {% endif %}
+                        </span>&nbsp;&nbsp;
+                    {% endblock %}
+
+                    {% if canAdminComment is defined and canAdminComment == true %}
+                        <a href="{{ path('acme_admin_comment_edit',{'comment_id':comment.id}) }}" class="btn btn-xs btn-default btn-delete-admin"><strong>{% trans from 'MykeesCommentBundle' %} mykees_comment_edit {% endtrans %}</strong></a>&nbsp;
+
+                        {% if comment.getChildren()|length > 0 %}
+                            <a onclick="return confirm('{% trans from 'MykeesCommentBundle' %} mykees_comment_remove_with_children_prompt {% endtrans %}')" href="{{ path('comment_admin_delete_with_children',{'model':comment.model,'model_id':comment.modelId,'comment_id':comment.id}) }}" class="btn btn-xs btn-danger btn-delete-admin"><strong>{% trans from 'MykeesCommentBundle' %} mykees_comment_remove_with_children {% endtrans %}</strong></a>
+
+                            {% else %}
+
+                            <a onclick="return confirm('{% trans from 'MykeesCommentBundle' %} mykees_comment_remove_prompt {% endtrans %}')" href="{{ path('comment_admin_delete',{'id':comment.id}) }}" class="btn btn-xs btn-danger btn-delete-admin"><strong>{% trans from 'MykeesCommentBundle' %} mykees_comment_remove {% endtrans %}</strong></a>
+                        {% endif %}
+
+                    {% endif %}
+
+                </div>
+
+            <div class="comment-body">
+                <p>
+                    {{ comment.content }}
+                </p>
+            </div>
+            {% if comment.depth > 0 %}
+                <a href="#" data-username="{{ comment.user.username is defined ? comment.user.username : comment.username }}" data-id="{{ comment.depth }}" data-depth="{{ comment.getDepthReached }}" class="reply">Répondre</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if comment.children %}
+    <div class="comment-replies">
+        {% for comment in comment.children %}
+            {% include "MykeesCommentBundle:Comments:comment.html.twig" %}
+        {% endfor %}
+    </div>
+{% endif %}

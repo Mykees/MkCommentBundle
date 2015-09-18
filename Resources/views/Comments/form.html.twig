@@ -1,0 +1,58 @@
+{% block mykees_comment_wrapper %}
+
+    <div id="form-wrapper" class="form-wrapper">
+
+        {% block mykees_comment_form %}
+
+            {{ form_start(form, {'attr': {'id': 'comments_area','class': ajax ? options.class is defined ? options.class ~ ' ajax_comment_form comment-area' : 'ajax_comment_form comment-area' : 'comment-area' }}) }}
+
+            {% block mykees_comment_fields %}
+                {% if app.user is null %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group {{ form_errors(form.username) is not empty ? 'has-error':'' }}">
+                                {% if form.username.vars.label %}
+                                    {{ form_label(form.username) }}
+                                {% endif %}
+                                {{ form_widget(form.username, {'attr': {'class': 'form-control comment_form_input input_opacity'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group {{ form_errors(form.email) is not empty ? 'has-error':'' }}" >
+                                {% if form.email.vars.label %}
+                                    {{ form_label(form.email) }}
+                                {% endif %}
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control comment_form_input input_opacity'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div id="ajax-loader" class="ajax-loader text-center"><img src="{{ asset('images/ajax-loader.gif') }}" alt=""/></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group {{ form_errors(form.content) is not empty ? 'has-error':'' }}">
+                            {% if form.content.vars.label %}
+                                {{ form_label(form.content) }}
+                            {% endif %}
+                            {{ form_widget(form.content, {'attr': {'class': 'form-control comment_form_input input_opacity'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group form-hidden-field">{{ form_widget(form.parentId) }}</div>
+                <div class="form-group form-hidden-field">{{ form_widget(form.model) }}</div>
+                <div class="form-group form-hidden-field">{{ form_widget(form.modelId) }}</div>
+                {{ form_rest(form) }}
+            {% endblock %}
+
+            <div class="submit">
+                <input class="btn btn-sm btn-primary btn-send input_opacity" type="submit" value="{% trans from 'MykeesCommentBundle' %} mykees_comment_submit {% endtrans %}"> &nbsp;&nbsp;
+                <button class="btn btn-sm btn-default btn-cancel cancel-reply" id="remove-reply">{% trans from 'MykeesCommentBundle' %}mykees_comment_cancel{% endtrans %}</button>
+            </div>
+            {{ form_end(form) }}
+
+        {% endblock %}
+
+    </div>
+
+{% endblock %}

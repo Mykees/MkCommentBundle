@@ -1,0 +1,13 @@
+comment_admin_delete_with_children:
+    path:     /delete/{model}/{model_id}/{comment_id}
+    defaults: { _controller: MykeesCommentBundle:AdminComments:deleteWithChildren }
+    requirements:
+        model: '[a-zA-Z0-9\-]+'
+        model_id: \d+
+        comment_id: \d+
+
+comment_admin_delete:
+    path:     /delete/{id}
+    defaults: { _controller: MykeesCommentBundle:AdminComments:delete }
+    requirements:
+        id: \d+

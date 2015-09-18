@@ -22,9 +22,11 @@ class MykeesCommentExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter("mykees_comment.comment.class", isset($config["comment_class"]) ? $config["comment_class"] : null);
-        $container->setParameter('success_message', !empty($config['success_message']) ? $config['success_message'] : null);
-        $container->setParameter('akismet', !empty($config['akismet']) ? $config['akismet'] : '');
+
+	    $container->setParameter("mykees_comment.comment.class", isset($config["comment_class"]) ? $config["comment_class"] : null);
+	    $container->setParameter('success_message', !empty($config['success_message']) ? $config['success_message'] : null);
+	    $container->setParameter('akismet', !empty($config['akismet']) ? $config['akismet'] : '');
+	    $container->setParameter('comment.depth', !empty($config['depth']) ? $config['depth'] : 0);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

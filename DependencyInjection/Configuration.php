@@ -20,18 +20,19 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mykees_comment');
 
-        $rootNode
-            ->children()
-                ->scalarNode('comment_class')->isRequired()->cannotBeEmpty()->end()
-                ->arrayNode('akismet')
-                    ->children()
-                        ->scalarNode('api_key')->end()
-                        ->scalarNode('website')->end()
-                    ->end()
-                ->end()
-                ->scalarNode('success_message')->end()
-            ->end()
-        ;
+	    $rootNode
+		    ->children()
+		        ->scalarNode('comment_class')->isRequired()->cannotBeEmpty()->end()
+		        ->scalarNode('depth')->end()
+		        ->arrayNode('akismet')
+		            ->children()
+		                ->scalarNode('api_key')->end()
+		                ->scalarNode('website')->end()
+		            ->end()
+		        ->end()
+		        ->scalarNode('success_message')->end()
+		    ->end()
+	    ;
 
         return $treeBuilder;
     }

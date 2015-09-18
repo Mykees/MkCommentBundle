@@ -1,37 +1,42 @@
-parameters:
-    mykees.comment.class: Mykees\CommentBundle\Entity\Comment
-
 services:
 #    mykees_comment.example:
 #        class: Mykees\CommentBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
     mykees.comment.form:
-        class: Mykees\CommentBundle\Form\Type\CommentType
-        arguments: [%mykees.comment.class%,@security.context]
+        class: Mykees\CommentBundle\Form\Type\CommentFormType
+        arguments: [@security.token_storage]
         tags:
-            - { name: form.type, alias: mykees_commentbundle_comment }
+            - { name: form.type, alias: mykees_comment }
+
+    mykees.comment.form.edit:
+        class: Mykees\CommentBundle\Form\Type\CommentFormEditType
+        tags:
+            - { name: form.type, alias: mykees_comment_edit }
+
 
     mykees.comment.manager:
         class: Mykees\CommentBundle\Manager\CommentManager
         arguments: [@form.factory, @router, @session, @mykees.comment.form, %mykees_comment.comment.class%]
 
+
     mykees.comment.query.manager:
         class: Mykees\CommentBundle\Manager\CommentQueryManager
-        arguments: [@doctrine, %mykees_comment.comment.class%]
+        arguments: [@doctrine, %mykees_comment.comment.class%,%comment.depth%]
+
 
     mykees.twig.form.extension:
         class: Mykees\CommentBundle\Twig\Extension\CommentExtension
         tags:
-            - { name: twig.extension, alias: comment_form }
+            - { name: twig.extension, alias: mykees_helper_comment }
 
     mykees.twig.md5extension:
         class: Mykees\CommentBundle\Twig\Extension\Md5Extension
         tags:
             - { name: twig.extension, alias: md5_ext }
 
-
-    mk.comment.listener:
+    mykees.comment.listener:
         class: Mykees\CommentBundle\Listener\CommentListener
-        arguments: [@doctrine, %mykees_comment.comment.class%, "@=container.hasParameter('fos_user.model.user.class') ? parameter('fos_user.model.user.class') : null"]
+        arguments: [@doctrine, %mykees_comment.comment.class%, "@=container.hasParameter('fos_user.model.user.class') ? parameter('fos_user.model.user.class') : null",%comment.depth%]
         tags:
             - { name: doctrine.event_listener, event: preRemove, method: preRemove }

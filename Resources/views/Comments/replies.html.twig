@@ -1,0 +1,33 @@
+<div class="comment-replies">
+    <div class="comment-list">
+        <div class="row">
+            <div class="col-xs-1">
+                {% if comment.user.email is defined %}
+                    <img src="http://www.gravatar.com/avatar/{{ comment.user.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+                {% else %}
+                    <img src="http://www.gravatar.com/avatar/{{ comment.email|md5 }}" alt="" style="vertical-align:top;width: 70px;">
+                {% endif %}
+            </div>
+            <div class="col-xs-10">
+                <div class="comment-meta">
+                    {% block mykees_comment_metas %}
+                        <span class="comment-meta-username">{{ comment.username|capitalize }}</span>
+                        <span class="comment-meta-date">
+                            {% if app.request.locale == "fr" %}
+                                &nbsp;il y a {{ date_interval(comment.createdAt.date,"fr") }}
+                            {% else %}
+                                &nbsp;{{ date_interval(comment.createdAt.date,app.request.locale) }} ago
+                            {% endif %}
+                        </span>
+                    {% endblock %}
+                </div>
+
+                <p>
+                    {{ comment.content }}
+                </p>
+
+                <a href="#" data-username="{{ comment.user.username is defined ? comment.user.username : comment.username }}" data-id="{{ comment.depth }}" data-depth="{{ comment.getDepthReached }}" class="reply">Répondre</a>
+            </div>
+        </div>
+    </div>
+</div>

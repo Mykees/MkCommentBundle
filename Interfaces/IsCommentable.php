@@ -2,14 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: Rafidion Michael
- * Date: 21/04/2015
- * Time: 15:48
+ * Date: 03/09/2015
+ * Time: 12:00
  */
 
 namespace Mykees\CommentBundle\Interfaces;
 
 
-interface CommentableInterface {
-
-    public function getId();
+interface IsCommentable {
+	public function getId();
 }

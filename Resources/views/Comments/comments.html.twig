@@ -1,0 +1,7 @@
+<div class="comments-list-area" id="comments-list-area">
+
+    {% for key,comment in comments.comments %}
+        {% include "MykeesCommentBundle:Comments:comment.html.twig" %}
+    {% endfor %}
+
+</div>

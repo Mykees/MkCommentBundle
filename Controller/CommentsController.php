@@ -47,7 +47,7 @@ class CommentsController extends Controller
 			}else{
 
 				if($request->isXmlHttpRequest()) {
-					return $this->returnErrorAjax($form);
+					return $this->returnAjaxErrors($form);
 				}else{
 					$this->error($request, $params['session']);
 				}

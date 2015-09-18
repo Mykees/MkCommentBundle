@@ -8,6 +8,7 @@
 
 namespace Mykees\CommentBundle\Interfaces;
 
+use FOS\UserBundle\Model\UserInterface;
 
 interface HasUserInterface {
 

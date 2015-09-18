@@ -95,7 +95,9 @@ class CommentExtension extends \Twig_Extension{
 			['minute','minutes']
 		];
 
-		for($i=0; $i < count($periodes); $i++)
+		$periodesLength = count($periodes);
+
+		for($i=0; $i < $periodesLength; $i++)
 		{
 			if(intval($periodes[$i]) >= 1 && $i < count($periodes))
 			{

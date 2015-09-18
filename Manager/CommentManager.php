@@ -9,6 +9,7 @@
 namespace Mykees\CommentBundle\Manager;
 
 use Mykees\CommentBundle\Interfaces\IsCommentable;
+use Mykees\CommentBundle\Libs\Akismet;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;

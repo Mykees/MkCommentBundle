@@ -13,7 +13,6 @@ use Mykees\CommentBundle\Interfaces\IsCommentable;
 
 class CommentQueryManager extends Manager{
 
-	private $em;
 	private $repository;
 	private $comment_class;
 	private $depth;
@@ -21,7 +20,6 @@ class CommentQueryManager extends Manager{
 
 	public function __construct(ManagerRegistry $managerRegistry, $class, $depth)
 	{
-		$this->em = $managerRegistry->getManager();
 		$this->comment_class = $class;
 		$this->repository = $managerRegistry->getRepository($this->comment_class);
 		$this->depth = $depth;

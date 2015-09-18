@@ -2,10 +2,8 @@
 
 namespace Mykees\CommentBundle\Controller;
 
-use Mykees\CommentBundle\Form\Type\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class AdminCommentsController extends Controller
 {

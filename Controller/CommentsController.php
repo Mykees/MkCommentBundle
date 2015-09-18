@@ -99,9 +99,9 @@ class CommentsController extends Controller
 	{
 		if($comment->getParentId() > 0)
 		{
-			if( ($request->request->get('response_type') === "true" && $max_depth == true) ||
-				($request->request->get('response_type') === "false" && $max_depth == true) ||
-				($request->request->get('response_type') === "true" && $max_depth == false)
+			if( ($request->request->get('response_type') === "true" && $max_depth === true) ||
+				($request->request->get('response_type') === "false" && $max_depth === true) ||
+				($request->request->get('response_type') === "true" && $max_depth === false)
 			){
 				return $this->renderView('MykeesCommentBundle:Comments:unwrap_replies.html.twig',['comment'=>$comment,'recent_reply'=>true]);
 			}else{
@@ -237,7 +237,7 @@ class CommentsController extends Controller
 		return $errors;
 	}
 
-	public function returnAjaxErrors($form)
+	private function returnAjaxErrors($form)
 	{
 		$json = json_encode(['error'=>'error','error_fields'=>$this->getErrorsAsArray($form)]);
 		return new Response($json);

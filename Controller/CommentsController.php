@@ -94,7 +94,13 @@ class CommentsController extends Controller
 		return new Response($json);
 	}
 
-
+	/**
+	 * Return a template
+	 * @param $comment
+	 * @param $request
+	 * @param $max_depth
+	 * @return string
+	 */
 	private function renderResponse($comment,$request,$max_depth)
 	{
 		if($comment->getParentId() > 0)
@@ -237,6 +243,11 @@ class CommentsController extends Controller
 		return $errors;
 	}
 
+	/**
+	 * Error message for Ajax
+	 * @param $form
+	 * @return Response
+	 */
 	private function returnAjaxErrors($form)
 	{
 		$json = json_encode(['error'=>'error','error_fields'=>$this->getErrorsAsArray($form)]);

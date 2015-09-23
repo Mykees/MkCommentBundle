@@ -1,129 +1,559 @@
-<!doctype html>
-<html class="no-js" lang="">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Symfony2 Comment Bundle by Mykees</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/app.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300|Karla:400,400italic,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-</head>
-<body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+        <!-- Place favicon.ico in the root directory -->
 
-<div class="page">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/materialize.min.css">
+        <link rel="stylesheet" href="assets/css/app.css">
+    </head>
+    <body>
 
-    <div class="header header--comment">
-        <div class="header__container">
-            <h1>Symfony2 <span>CommentBundle</span></h1>
-        </div>
-    </div>
-
-    <div class="content">
-
-        <div class="content_container">
-            <div class="nav">
-                <a class="nav__link nav__link--current" href="http://Mykees.github.io/MkCommentBundle/index.html">Présentation</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkCommentBundle/configuration.html">Configuration</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkCommentBundle/usage.html">Usage</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkCommentBundle/view.html">View and Style</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkCommentBundle/options.html">Options</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkCommentBundle/infos.html">More infos</a>
-            </div>
-
-            <div class="content__text">
-
-                <div class="content__description">
-                    <p>
-                        The Symfony2 Comment Bundle bundle allows you to add a form that will allow you to comment on your content and then to retrieve these comments. All this very easily.
-                    </p>
+      <div class="navbar-fixed">
+          <nav class="grey darken-1">
+            <div class="container">
+                <div class="nav-wrapper">
+                  <a href="http://mykees.github.io/MkCommentBundle/" class="brand-logo"><img src="assets/images/commentbundle-logo.png" alt=""></a>
+                  <a href="#" data-activates="mobile-demo" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                  </a>
+                  <ul class="right hide-on-med-and-down">
+                    <li><a href="#modal-contact" class="modal-trigger"><i class="material-icons dp48 left">email</i> Contact</a></li>
+                    <li><a href="#modal-bundles" class="modal-trigger"><i class="material-icons dp48 left">view_module</i> Other Bundles</a></li>
+                  </ul>
+                  <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#modal-contact" class="modal-trigger"><i class="material-icons dp48 left">email</i> Contact</a></li>
+                    <li><a href="#modal-bundles" class="modal-trigger"><i class="material-icons dp48 left">view_module</i> Other Bundles</a></li>
+                  </ul>
                 </div>
+            </div>
+          </nav>
+      </div>
 
-                <h2>Functionality :</h2>
 
-                <ul>
-                    <li>
-                        <strong>Not need a lot of configuration</strong>
-                        <ul>
-                            <li class="no-list">
-                                <p>
-                                    This CommentBundle is very is to configure, without lot of code.
-                                </p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+      <header class="header" id="header">
+        <div class="row">
+            <div class="col s12 m12 l12 doc-title center blue-grey-text text-lighten-5">Documentation</div>
+            <h1 class="col s12 m12 l12 main-title center blue-grey-text text-lighten-5">
+            MkCommentBundle
+            </h1>
+            <div class="col s12 m12 l12 for-sf2 center blue-grey-text text-lighten-5">A bundle comment system for Symfony2</div>
+        </div>
+      </header>
 
-                <ul>
-                    <li>
-                        <strong>Comment and response</strong>
-                        <ul>
-                            <li class="no-list">
-                                <p>
-                                    With this bundle, you can add comment, and you can reply to them.
-                                    The reply system extends on one level deep to keep better visibility.
-                                </p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
 
-                <ul>
-                    <li>
-                        <strong>Protect to comment spam</strong>
-                        <ul>
-                            <li class="no-list">
-                                <p>
+        <div class="container container-wrapper">
+            <div class="row">
+
+              <aside class="col s12 m4 l3" id="aside">
+                <div class="collection" id="sticky">
+                    <a class="collection-item" href="#introducing">Introducing</a>
+                    <a class="collection-item" href="#configuration">Configuration</a>
+                    <a class="collection-item" href="#usage">Usage</a>
+                    <a class="collection-item" href="#view-style">View and Style</a>
+                    <a class="collection-item" href="#manage">Manage Comments</a>
+                    <a class="collection-item" href="#ajax">Ajax</a>
+                    <a class="collection-item" href="#options">Options</a>
+                    <a class="collection-item" href="#useful">Useful functions</a>
+                </div>
+              </aside>
+
+              <div class="col s12 m8 l9 content">
+
+                    <div class="wrapper-section" id="introducing">
+                        <h3 class="title-section">
+                        <small><a href="#introducing"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Introducing
+                        </h3>
+
+                        <p>
+                            The MkCommentBundle allows you to create comment form, add and manage comments on your content.
+                        </p>
+                        <div class="sub-wrapper functionalities">
+                            <span class="subtitle">Features :</span>
+                            <ul>
+                                <li>
+                                    Easy to configure and used
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    You can add comment, and you can reply to them.You can adjust like you want the depth of responses to a comment.
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
                                     The bundle can protect your comments to spam. For that it use <strong><a href="https://akismet.com/">Akismet</a></strong> library.
-                                    all you need is to create an account on <strong>Akismet</strong> and add your ID in configuration.
-                                </p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    Possibility to post a comment normally or by Ajax system
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    Can be used with <strong><a href="https://github.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a></strong>
+                                </li>
+                            </ul>
+                        </div>
 
-                <p>&nbsp;</p>
+                    </div>
 
-                <p><strong>TODO :</strong></p>
-                <ul>
-                    <li>More features coming soon...</li>
-                </ul>
+                    <div class="wrapper-section" id="configuration">
+                        <h3 class="title-section">
+                        <small><a href="#configuration"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Configuration
+                        </h3>
 
 
+
+                        <div class="sub-wrapper">
+<!-- =INSTALL -->
+<div class="sub-title"><span class="subtitle bold">Install :</span></div>
+
+<p>Download MkCommentBundle with the command line :</p>
+<pre>
+    <code class="bash hljs">$ php composer.phar require mykees/symfony2-comment-bundle "1.0.*@dev"</code>
+</pre>
+
+
+<p>Enable the bundle :</p>
+<pre>
+<code class=" hljs php">&lt;?php
+public <span class="hljs-keyword">function</span> registerBundle
+{
+    $bundles = array(
+        // <span class="hljs-keyword">...</span>
+        new Mykees\CommentBundle\MykeesCommentBundle(),
+    );
+}</code>
+</pre>
+
+<p>Add route in your app/config/routing.yml :</p>
+<pre><code class="hljs xml"><span class="hljs-label">mykees_comment:</span>
+    resource: <span class="hljs-string">"@MykeesCommentBundle/Resources/config/routing.yml"</span>
+    prefix:   /comment
+
+<span class="hljs-label">mykees_admin_comment:</span>
+    resource: <span class="hljs-string">"@MykeesCommentBundle/Resources/config/routing_admin.yml"</span>
+    prefix:   /admin/comment</code></pre>
+
+<!--/ INSTALL -->
+
+<!-- =COMMENT CLASS -->
+<div class="sub-title"><span class="subtitle bold">Create your Comment classe :</span></div>
+
+<p>
+    Create your own Comment class, and this class must extend by the Mykees\CommentBundle\Entity\Comment class that will provide variables getters, setters and mapping required.
+</p>
+
+<pre><code class="hljs php">&lt;?php
+<span class="hljs-comment">// src/YourProject/YourBundle/Entity/Comment.php</span>
+
+namespace YourProject\YourBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Mykees\CommentBundle\Entity\Comment as CommentParent;
+
+<span class="hljs-javadoc">/**
+* <span class="hljs-javadoctag">@ORM</span>\Entity
+* <span class="hljs-javadoctag">@ORM</span>\HasLifecycleCallbacks
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CommentParent</span></span>
+{
+    <span class="hljs-javadoc">/**
+    * <span class="hljs-javadoctag">@var</span> integer
+    *
+    * <span class="hljs-javadoctag">@ORM</span>\Column(name="id", type="integer")
+    * <span class="hljs-javadoctag">@ORM</span>\Id
+    * <span class="hljs-javadoctag">@ORM</span>\GeneratedValue(strategy="AUTO")
+    */</span>
+    <span class="hljs-keyword">private</span> $id;
+
+
+    <span class="hljs-javadoc">/**
+    * Get id
+    *
+    * <span class="hljs-javadoctag">@return</span> integer
+    */</span>
+    public function getId()
+    {
+        <span class="hljs-keyword">return</span> $<span class="hljs-keyword">this</span>-&gt;id;
+    }
+}</code></pre>
+
+<p>Enable the configuration in your app/config/config.yml :</p>
+<pre><code class="hljs bash">mykees_comment:
+    comment_class: YourProject<span class="hljs-command">\YourBundle</span><span class="hljs-command">\Entity</span><span class="hljs-command">\Comment</span></code></pre>
+<!--/ COMMENT CLASS -->
+
+
+<p>That's it for minimal configuration :)</p>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="wrapper-section" id="usage">
+                        <h3 class="title-section">
+                        <small><a href="#usage"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Usage
+                        </h3>
+
+<!-- =ADD COMMENT FORM -->
+<p>To retrieve the comment form for your content, you need to have an object with an id. By example if you have a controller that retrieves an article and an entity Article, you can do like that :</p>
+
+<div class="sub-title"><span class="subtitle bold">Make you entity Commentable :</span></div>
+
+<p>Implement the IsCommentable Interface Interface to your entity:</p>
+
+<pre><code class=" hljs php"><span class="php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">YourProject</span>\<span class="hljs-title">YourBundle</span>\<span class="hljs-title">Entity</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Doctrine</span>\<span class="hljs-title">ORM</span>\<span class="hljs-title">Mapping</span> <span class="hljs-title">as</span> <span class="hljs-title">ORM</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Mykees</span>\<span class="hljs-title">CommentBundle</span>\<span class="hljs-title">Interfaces</span>\<span class="hljs-title">IsCommentable</span>;
+
+<span class="hljs-comment">/**
+* Article
+*
+*<span class="hljs-phpdoc"> @ORM</span>\Table()
+*<span class="hljs-phpdoc"> @ORM</span>\Entity()
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Article</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IsCommentable</span>
+{</span>
+    <span class="hljs-comment">//....</span>
+}</span></code></pre>
+<!--/ ADD COMMENT FORM -->
+
+<div class="sub-title"><span class="subtitle bold">Create the comment form</span></div>
+
+<p>To create a comment form in your controller, you need to use the following service :</p>
+<pre><code class=" hljs php">$form = $<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mykees.comment.manager'</span>)</span>-&gt;</span>createForm($article);</code></pre>
+
+<p>If you want to add a label to your fields, you can add an array as optional second parameter that will contain these labels :</p>
+<pre><code class=" hljs php">$form = $<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mykees.comment.manager'</span>)</span>-&gt;</span>createForm($article,[
+    <span class="hljs-string">'username'</span><span class="hljs-function">=&gt;</span><span class="hljs-string">'Nom:'</span>,
+    <span class="hljs-string">'email'</span><span class="hljs-function">=&gt;</span><span class="hljs-string">'Email:'</span>
+]);</code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">Get the comments list :</span></div>
+
+<p>To get a the comments list linked to an entity in your controller, you need to use the following service :</p>
+
+<pre><code class=" hljs php">$comments = $<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mykees.comment.query.manager'</span>)</span>-&gt;</span>findComments($article);</code></pre>
+
+                    </div>
+
+
+
+
+                    <div class="wrapper-section" id="view-style">
+                        <h3 class="title-section">
+                        <small><a href="#view-style"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> View and Style
+                        </h3>
+<div class="sub-title"><span class="subtitle bold">Form helper :</span></div>
+<p>
+    Use the form helper to get the form in your view
+</p>
+<pre><code class=" hljs html"><span class="xml"></span><span class="hljs-expression">{{ <span class="hljs-variable">helper</span>_<span class="hljs-variable">comment</span>_<span class="hljs-variable">form</span>(<span class="hljs-variable">form</span>) }}</span><span class="xml"></span></code></pre>
+
+<p>
+    Add base css in your layout for stylize the main form element
+</p>
+<pre><code class=" hljs html"><span class="xml">{% block stylesheets %}
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"</span></span></span><span class="hljs-expression">{{ <span class="hljs-variable">asset</span>('<span class="hljs-variable">bundles</span><span class="hljs-end-block">/mykeescomment</span><span class="hljs-end-block">/css</span><span class="hljs-end-block">/comment.css</span>') }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-value">"</span>&gt;</span>
+{% endblock %}</span></code></pre>
+
+<p>
+    If you activate the responses to comments by adjusting the depth, you need to add the following js file to your template for stylize some form elements
+</p>
+<pre><code class=" hljs html"><span class="xml">{% block javascripts %}
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"</span></span></span><span class="hljs-expression">{{ <span class="hljs-variable">asset</span>('<span class="hljs-variable">bundles</span><span class="hljs-end-block">/mykeescomment</span><span class="hljs-end-block">/js</span><span class="hljs-end-block">/comment.js</span>') }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-value">"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+{% endblock %}</span></code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">Comments list helper :</span></div>
+<p>
+    Use the comment helper to get the comments list in your view
+</p>
+<pre><code class=" hljs html"><span class="xml"></span><span class="hljs-expression">{{ <span class="hljs-variable">helper</span>_<span class="hljs-variable">comments</span>_<span class="hljs-variable">list</span>(<span class="hljs-variable">comments</span>) }}</span><span class="xml"></span></code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">Number of comments :</span></div>
+<pre><code class=" hljs html"><span class="xml"></span><span class="hljs-expression">{{ <span class="hljs-variable">comments.count</span> }}</span><span class="xml"></span></code></pre>
+
+
+
+                    </div>
+
+
+                    <div class="wrapper-section" id="manage">
+                        <h3 class="title-section">
+                        <small><a href="#manage"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Manage Comments
+                        </h3>
+
+
+<div class="sub-title"><span class="subtitle bold">Editing a comment :</span></div>
+
+<p>To edit comments, you must to create your own editing process.</p>
+<p>
+    1) Create your routing : <strong>/!\ (Don't change "<em>comment_id</em>" name parameter) /!\</strong>
+</p>
+<pre><code class="hljs xml"><span class="hljs-symbol">my_own_admin_comment_edit:</span>
+    <span class="hljs-symbol">path:</span> /comment/edit/{comment_id}
+    <span class="hljs-function">defaults: </span>{ <span class="hljs-symbol">_controller:</span> <span class="hljs-constant">YourOwnBundle</span><span class="hljs-symbol">:YourOwnController</span><span class="hljs-symbol">:youOwnEditFunction</span> }
+    <span class="hljs-symbol">requirements:</span>
+        <span class="hljs-symbol">comment_id:</span> \d+</code></pre>
+
+<p>
+    2) Create your function edit proccess in your controller.
+</p>
+
+<p>
+    3) Add to <strong><em>Comments list helper</em></strong> "true" as second parameter and on third parameter an array that will contain the name of your edit route:
+</p>
+<pre><code class=" hljs handlebars"><span class="xml"></span><span class="hljs-expression">{{ <span class="hljs-variable">helper</span>_<span class="hljs-variable">comments</span>_<span class="hljs-variable">list</span>(<span class="hljs-variable">comments</span>,<span class="hljs-variable">true</span>,{<span class="hljs-variable">edit</span>_<span class="hljs-variable">routing</span>:'<span class="hljs-variable">my</span>_<span class="hljs-variable">own</span>_<span class="hljs-variable">admin</span>_<span class="hljs-variable">comment</span>_<span class="hljs-variable">edit</span>'}) }}</span><span class="xml"></span></code></pre>
+
+
+
+
+                    </div>
+
+
+
+                    <div class="wrapper-section" id="ajax">
+                        <h3 class="title-section">
+                        <small><a href="#ajax"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Ajax
+                        </h3>
+
+<p>
+    If you prefer to post comments by Ajax, you must to add <strong>true</strong> as second parameter of the helper comment form:
+</p>
+<pre><code class=" hljs html"><span class="xml"></span><span class="hljs-expression">{{ <span class="hljs-variable">helper</span>_<span class="hljs-variable">comment</span>_<span class="hljs-variable">form</span>(<span class="hljs-variable">form,true</span>) }}</span><span class="xml"></span></code></pre>
+
+<p>That's it :)</p>
+
+
+                    </div>
+
+                    <div class="wrapper-section" id="options">
+                        <h3 class="title-section">
+                        <small><a href="#options"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Options
+                        </h3>
+
+
+<div class="sub-title"><span class="subtitle bold">Use with FOSUserBundle :</span></div>
+<p>
+    If you use the <strong><a href="https://github.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a></strong> in your project and want to use it with MkCommentBundle, your Comment classe must implement HasUserInterface Interface, and add $user variable with Getter and Setter
+</p>
+<pre class="prettyprint"><code class=" hljs xml"><span class="php"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">YourProject</span>\<span class="hljs-title">YourBundle</span>\<span class="hljs-title">Entity</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Doctrine</span>\<span class="hljs-title">ORM</span>\<span class="hljs-title">Mapping</span> <span class="hljs-title">as</span> <span class="hljs-title">ORM</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">FOS</span>\<span class="hljs-title">UserBundle</span>\<span class="hljs-title">Model</span>\<span class="hljs-title">UserInterface</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Mykees</span>\<span class="hljs-title">CommentBundle</span>\<span class="hljs-title">Entity</span>\<span class="hljs-title">Comment</span> <span class="hljs-title">as</span> <span class="hljs-title">CommentParent</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Mykees</span>\<span class="hljs-title">CommentBundle</span>\<span class="hljs-title">Interfaces</span>\<span class="hljs-title">HasUserInterface</span>;
+
+<span class="hljs-comment">/**
+* Comment
+*
+*<span class="hljs-phpdoc"> @ORM</span>\Entity
+*<span class="hljs-phpdoc"> @ORM</span>\HasLifecycleCallbacks
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CommentParent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HasUserInterface</span>
+{</span>
+
+    <span class="hljs-comment">//...</span>
+
+    <span class="hljs-comment">/**
+    *
+    *<span class="hljs-phpdoc"> @ORM</span>\ManyToOne(targetEntity="YourProject\YourBundle\Entity\User")
+    *<span class="hljs-phpdoc"> @var</span> User
+    */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$user</span>;
+
+    <span class="hljs-comment">//...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUser</span><span class="hljs-params">()</span>
+    {</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;user;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setUser</span><span class="hljs-params">(UserInterface <span class="hljs-variable">$user</span>)</span>
+    {</span>
+        <span class="hljs-variable">$this</span>-&gt;user = <span class="hljs-variable">$user</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>;
+    }
+
+    <span class="hljs-comment">//...</span>
+}</span></code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">Akismet :</span></div>
+<p>
+    The MkCommentBundle can work with Akismet. To use it, it's very simple.
+</p>
+<ul>
+    <li>Create an <a href="https://akismet.com/">account</a>.</li>
+    <li>
+        Add to app/config/config.yml the following lines :
+    </li>
+</ul>
+<pre class="prettyprint"><code class=" hljs vbnet">mykees_comment:
+    akismet:
+        api_key: YOUR API <span class="hljs-keyword">KEY</span>
+        website: YOUR WEBSITE</code></pre>
+
+
+
+<div class="sub-title"><span class="subtitle bold">Activate responses :</span></div>
+<p>
+    You can activate the reponses by adjusting the depth in your app/config/config.yml.
+</p>
+<p>
+
+</p>
+<pre><code class=" hljs php">mykees_comment:
+    //<span class="hljs-keyword">...</span>
+    depth: <span class="hljs-number">1</span></code></pre>
+
+<p>
+    <strong>Note*</strong>
+</p>
+<p>
+    If you activate the responses, don't forget to add js file in your view:
+</p>
+<pre><code class="hljs html xml"><span class="xml">{% block javascripts %}
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-title">script</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attribute">type</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-value">"text/javascript"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attribute">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-value">"</span></span></span></span></span><span class="hljs-expression"><span class="hljs-tag"><span class="hljs-value">{{ </span></span><span class="hljs-variable"><span class="hljs-tag"><span class="hljs-value">asset</span></span></span><span class="hljs-tag"><span class="hljs-value">('</span></span><span class="hljs-variable"><span class="hljs-tag"><span class="hljs-value">bundles</span></span></span><span class="hljs-end-block"><span class="hljs-tag"><span class="hljs-value">/mykeescomment</span></span></span><span class="hljs-end-block"><span class="hljs-tag"><span class="hljs-value">/js</span></span></span><span class="hljs-end-block"><span class="hljs-tag"><span class="hljs-value">/comment.js</span></span></span><span class="hljs-tag"><span class="hljs-value">') }}</span></span></span><span class="xml"><span class="hljs-tag"><span class="hljs-value"><span class="hljs-tag"><span class="hljs-value">"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="javascript"></span><span class="hljs-tag"><span class="undefined"></span><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-title">script</span></span></span><span class="hljs-tag">&gt;</span></span>
+{% endblock %}</span></code></pre>
+
+
+                    </div>
+
+                    <div class="wrapper-section" id="useful">
+                        <h3 class="title-section">
+                        <small><a href="#options"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Useful functions
+                        </h3>
+
+
+<div class="sub-title">
+<span class="subtitle bold">- Find one comment :</span>
+</div>
+<p>
+    <strong>$model_name</strong> and <strong>$model_id</strong> are optional
+</p>
+<pre><code class=" hljs php"><span class="hljs-variable">$this</span><span class="hljs-subst">-&gt;</span>get(<span class="hljs-string">'mykees.comment.query.manager'</span>)<span class="hljs-subst">-&gt;</span>findOneComment(<span class="hljs-variable">$id</span>, <span class="hljs-variable">$model_name=null</span>,<span class="hljs-variable">$model_id=null</span>)</code></pre>
+
+
+
+<div class="sub-title"><span class="subtitle bold">- Find one comment by model referer :</span></div>
+<p>
+    <strong>$model</strong> parameter must an instance of IsCommentable interface.
+</p>
+<pre><code class=" hljs php"><span class="hljs-variable">$this</span><span class="hljs-subst">-&gt;</span>get(<span class="hljs-string">'mykees.comment.query.manager'</span>)<span class="hljs-subst">-&gt;</span>findOneCommentByReferer(<span class="hljs-variable">$id</span>, <span class="hljs-variable">$model</span>)</code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">- Find all comments for an entity :</span></div>
+<p>
+    The <em>$get_by_id</em> parameter allows to have the id of comment as index in array. it's an optionnal parameter
+</p>
+<pre><code class=" hljs php"><span class="hljs-variable">$this</span><span class="hljs-subst">-&gt;</span>get(<span class="hljs-string">'mykees.comment.query.manager'</span>)<span class="hljs-subst">-&gt;</span>findComments(IsCommentable <span class="hljs-variable">$model</span>, <span class="hljs-variable">$get_by_id</span><span class="hljs-subst">=</span><span class="hljs-literal">false</span>)</code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">- Find all comments for an entity by model name and model id :</span></div>
+<p>
+    The <em>$get_by_id</em> parameter allows to have the id of comment as index in array. it's an optionnal parameter
+</p>
+<pre><code class=" hljs php"><span class="hljs-variable">$this</span><span class="hljs-subst">-&gt;</span>get(<span class="hljs-string">'mykees.comment.query.manager'</span>)<span class="hljs-subst">-&gt;</span>findCommentsByModelAndId(<span class="hljs-variable">$model_name</span>, <span class="hljs-variable">$model_id</span>, <span class="hljs-variable">$get_by_id</span><span class="hljs-subst">=</span><span class="hljs-literal">false</span>)</code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">- Retrieve all comments :</span></div>
+<pre class="prettyprint"><code class=" hljs php"><span class="hljs-variable">$this</span>-&gt;get(<span class="hljs-string">'mykees.comment.query.manager'</span>)-&gt;findAllComments(<span class="hljs-keyword">array</span> <span class="hljs-variable">$criteria</span>=[],<span class="hljs-variable">$orderBy</span>=<span class="hljs-keyword">null</span>,<span class="hljs-variable">$limit</span>=<span class="hljs-keyword">null</span>,<span class="hljs-variable">$offset</span>=<span class="hljs-keyword">null</span>)</code></pre>
+
+
+
+<div class="sub-title"><span class="subtitle bold">- Delete comments by ids :</span></div>
+<pre class="prettyprint"><code class=" hljs coffeescript">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mykees.comment.query.manager'</span>)</span>-&gt;</span>deleteByCommentIds($ids)</code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">- Delete a comment by id :</span></div>
+<pre class="prettyprint"><code class=" hljs coffeescript">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mykees.comment.query.manager'</span>)</span>-&gt;</span>deleteComment($id)</code></pre>
+
+
+
+                    </div>
+
+              </div>
 
             </div>
-
         </div>
 
-    </div>
 
-    <!--OTHERS PROJECTS-->
-    <div class="others__projects">
+      <div id="modal-contact" class="modal modal-custom">
+        <div class="modal-content">
+          <h4 class="center">Source</h4>
+          <p class="center"><a href="https://github.com/Mykees/Symfony2-Comment-Bundle">https://github.com/Mykees/Symfony2-Comment-Bundle</a></p>
 
-        <div class="block__projects">
-            <h2 class="project__title project__tag">
-                <a href="http://Mykees.github.io/MkTagBundle/">
-                    <span>Symfony2 TagBundle</span>
-                </a>
-            </h2>
+          <h4 class="center">Mail</h4>
+          <p class="center"><a href="http://mykees.fr/">mykeespro@gmail.com/</a></p>
+
+          <h4 class="center">Github</h4>
+          <p class="center"><a href="https://github.com/Mykees">https://github.com/Mykees</a></p>
         </div>
-        <div class="block__projects project__left">
-            <h2 class="project__title project__media">
-                <a href="http://Mykees.github.io/MkMediaBundle/">
-                    <span>Symfony2 MediaBundle</span>
-                </a>
-            </h2>
+      </div>
+
+
+      <div id="modal-bundles" class="modal bottom-sheet bottom-sheet-custom">
+        <div class="modal-content">
+            <div class="row custom-row">
+                <div class="col l6 m6 s12 custom-col">
+                    <a href="http://mykees.github.io/MkMediaBundle/" class="media-bundle-link center">
+                        <div class="custom-row row">
+                            <div class="col l6 custom-col right-align wrapper-img pr55">
+                                <img src="assets/images/mediabundle-logo.png" alt="">
+                            </div>
+                            <div class="col l6 custom-col left-align wrapper-text">
+                                <h5>MkMediaBundle</h5>
+                                <p>A bundle media system for Symfony2</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col l6 m6 s12 custom-col">
+                    <a href="http://mykees.github.io/MkTagBundle/" class="tag-bundle-link center">
+                        <div class="custom-row row">
+                            <div class="col l6 custom-col right-align wrapper-text pr55">
+                                <h5>MkTagBundle</h5>
+                                <p>A bundle tag system for Symfony2</p>
+                            </div>
+                            <div class="col l6 custom-col left-align wrapper-img">
+                                <img src="assets/images/tagbundle-logo.png" alt="">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
+      </div>
 
-    </div>
-
-</div>
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="assets/js/materialize.min.js"></script>
+        <script src="assets/js/highlight.pack.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script>
+            $(".button-collapse").sideNav();
+            $('.modal-trigger').leanModal();
+        </script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
 </html>

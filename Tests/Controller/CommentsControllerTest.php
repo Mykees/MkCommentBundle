@@ -63,7 +63,7 @@ class CommentsControllerTest extends WebTestCase{
 	{
 		$crawler = $this->client->request('GET','/blog/title-1');
 		$this->assertEquals('Mvc\BlogBundle\Controller\BlogController::showAction',  $this->client->getRequest()->attributes->get('_controller'));
-		$form = $crawler->selectButton('Poster')->form([
+		$form = $crawler->selectButton('mykees_comment_submit')->form([
 			'mykees_comment[username]'=>'Mykees',
 			'mykees_comment[email]'=>'contact@mykees.fr',
 			'mykees_comment[content]'=>'Salut les guedins',
@@ -85,7 +85,7 @@ class CommentsControllerTest extends WebTestCase{
 	{
 		$crawler = $this->client->request('GET','/blog/title-1');
 		$this->assertEquals('Mvc\BlogBundle\Controller\BlogController::showAction',  $this->client->getRequest()->attributes->get('_controller'));
-		$form = $crawler->selectButton('Poster')->form([
+		$form = $crawler->selectButton('mykees_comment_submit')->form([
 			'mykees_comment[username]'=>'',
 			'mykees_comment[email]'=>'contact@mykees.fr',
 			'mykees_comment[content]'=>'Salut les guedins',
@@ -105,7 +105,7 @@ class CommentsControllerTest extends WebTestCase{
 	{
 
 		$crawler = $this->client->request('GET','/blog/title-1');
-		$form = $crawler->selectButton('Poster')->form([
+		$form = $crawler->selectButton('mykees_comment_submit')->form([
 			'mykees_comment[username]'=>'Mykees',
 			'mykees_comment[email]'=>'contact.fr',
 			'mykees_comment[content]'=>'Salut les guedins',
@@ -126,7 +126,7 @@ class CommentsControllerTest extends WebTestCase{
 	{
 		$crawler = $this->client->request('GET','/blog/title-2');
 
-		$form = $crawler->selectButton('Poster')->form([
+		$form = $crawler->selectButton('mykees_comment_submit')->form([
 			'mykees_comment[username]'=>'Mykees',
 			'mykees_comment[email]'=>'contact@mykees.fr',
 			'mykees_comment[content]'=>'Salut les guedins',
@@ -142,7 +142,7 @@ class CommentsControllerTest extends WebTestCase{
 
 		$this->assertEquals(6, $count);
 
-		$form = $crawler->selectButton('Poster')->form([
+		$form = $crawler->selectButton('mykees_comment_submit')->form([
 			'mykees_comment[username]'=>'Marion',
 			'mykees_comment[email]'=>'contact@marion.fr',
 			'mykees_comment[content]'=>'Salut les guedins',
@@ -166,7 +166,7 @@ class CommentsControllerTest extends WebTestCase{
 	public function testPreDeleteComment()
 	{
 		$crawler = $this->client->request('GET','/blog/title-1');
-		$form = $crawler->selectButton('Poster')->form([
+		$form = $crawler->selectButton('mykees_comment_submit')->form([
 			'mykees_comment[username]'=>'Mykees',
 			'mykees_comment[email]'=>'contact@mykees.fr',
 			'mykees_comment[content]'=>'Salut les guedins',

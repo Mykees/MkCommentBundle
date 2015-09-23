@@ -13,7 +13,7 @@ before_script:
     - composer install --dev
     - php Tests/Fixtures/bin/console --env=test doctrine:schema:create
     - php Tests/Fixtures/bin/console --env=test doctrine:schema:update --force
-    - php Tests/Fixtures/bin/console --env=test assets:install
+    - php Tests/Fixtures/bin/console --env=test assetic:dump
 
 
 after_script:

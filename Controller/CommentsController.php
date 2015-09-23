@@ -2,7 +2,6 @@
 
 namespace Mykees\CommentBundle\Controller;
 
-use Mykees\CommentBundle\Form\Type\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +47,7 @@ class CommentsController extends Controller
 			}else{
 
 				if($request->isXmlHttpRequest()) {
-					return $this->returnErrorAjax($form);
+					return $this->returnAjaxErrors($form);
 				}else{
 					$this->error($request, $params['session']);
 				}
@@ -96,13 +95,13 @@ class CommentsController extends Controller
 	}
 
 
-	public function renderResponse($comment,$request,$max_depth)
+	private function renderResponse($comment,$request,$max_depth)
 	{
 		if($comment->getParentId() > 0)
 		{
-			if( ($request->request->get('response_type') == "true" && $max_depth == true) ||
-				($request->request->get('response_type') == "false" && $max_depth == true) ||
-				($request->request->get('response_type') == "true" && $max_depth == false)
+			if( ($request->request->get('response_type') === "true" && $max_depth === true) ||
+				($request->request->get('response_type') === "false" && $max_depth === true) ||
+				($request->request->get('response_type') === "true" && $max_depth === false)
 			){
 				return $this->renderView('MykeesCommentBundle:Comments:unwrap_replies.html.twig',['comment'=>$comment,'recent_reply'=>true]);
 			}else{
@@ -169,7 +168,7 @@ class CommentsController extends Controller
 	 * Init user info
 	 * @param $request
 	 * @param $comment
-	 * @return bool|\Symfony\Component\HttpFoundation\RedirectResponse
+	 * @return boo|\Symfony\Component\HttpFoundation\RedirectResponse
 	 */
 	private function userInfo($request, $comment)
 	{
@@ -238,7 +237,7 @@ class CommentsController extends Controller
 		return $errors;
 	}
 
-	public function returnAjaxErrors($form)
+	private function returnAjaxErrors($form)
 	{
 		$json = json_encode(['error'=>'error','error_fields'=>$this->getErrorsAsArray($form)]);
 		return new Response($json);

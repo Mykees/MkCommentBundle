@@ -22,8 +22,8 @@
 
         "mykees/blog-bundle":"1.0.*@dev",
         "mykees/symfony2-tag-bundle": "1.0.*@dev",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
         "mykees/symfony2-media-bundle": "1.0.*@dev",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "symfony/monolog-bundle": "~2.3",
         "sensio/framework-extra-bundle": "3.0.*@dev",

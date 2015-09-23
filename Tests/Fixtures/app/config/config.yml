@@ -1,9 +1,12 @@
 imports:
     - { resource: security.yml }
 
+parameters:
+    locale: fr
+
 framework:
     #esi:             ~
-    translator:      { fallbacks: ["fr"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          llololollol
     router:
         resource: "%kernel.root_dir%/config/routing_dev.yml"
@@ -61,3 +64,4 @@ doctrine:
 
 mykees_comment:
     comment_class: Mvc\BlogBundle\Entity\Comment
+    depth: 1

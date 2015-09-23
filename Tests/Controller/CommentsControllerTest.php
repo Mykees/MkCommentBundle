@@ -62,7 +62,7 @@ class CommentsControllerTest extends WebTestCase{
 	public function testAddComment()
 	{
 		$crawler = $this->client->request('GET','/blog/title-1');
-		$this->assertEquals('Acme\BlogBundle\Controller\BlogController::showAction',  $this->client->getRequest()->attributes->get('_controller'));
+		$this->assertEquals('Mvc\BlogBundle\Controller\BlogController::showAction',  $this->client->getRequest()->attributes->get('_controller'));
 		$form = $crawler->selectButton('Poster')->form([
 			'mykees_comment[username]'=>'Mykees',
 			'mykees_comment[email]'=>'contact@mykees.fr',
@@ -84,7 +84,7 @@ class CommentsControllerTest extends WebTestCase{
 	public function testAddCommentWithEmptyName()
 	{
 		$crawler = $this->client->request('GET','/blog/title-1');
-		$this->assertEquals('Acme\BlogBundle\Controller\BlogController::showAction',  $this->client->getRequest()->attributes->get('_controller'));
+		$this->assertEquals('Mvc\BlogBundle\Controller\BlogController::showAction',  $this->client->getRequest()->attributes->get('_controller'));
 		$form = $crawler->selectButton('Poster')->form([
 			'mykees_comment[username]'=>'',
 			'mykees_comment[email]'=>'contact@mykees.fr',
@@ -180,7 +180,7 @@ class CommentsControllerTest extends WebTestCase{
 		$this->assertEquals(6, $count);
 
 
-		$post = $this->em->getRepository('AcmeBlogBundle:Post')->find(25);
+		$post = $this->em->getRepository('MvcBlogBundle:Post')->find(25);
 		$this->em->remove($post);
 		$this->em->flush();
 

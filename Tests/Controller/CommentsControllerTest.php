@@ -36,7 +36,7 @@ class CommentsControllerTest extends WebTestCase{
 
        $fixtures = [
            'Mykees\CommentBundle\DataFixtures\ORM\LoadCommentData',
-           'Acme\BlogBundle\DataFixtures\ORM\LoadPostsData',
+           'Mvc\BlogBundle\DataFixtures\ORM\LoadPostsData',
        ];
        $this->loadFixtures($fixtures);
        parent::setUp();

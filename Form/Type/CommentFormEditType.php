@@ -20,30 +20,27 @@ class CommentFormEditType extends AbstractType {
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		if(empty($this->user) || $this->user == 'anon.')
-		{
-			$builder
-				->add('username')
-				->add('email')
-				->add('content')
-				->add('model',"text",[
-					'required'=>false
-				])
-				->add('modelId',"text",[
-					'required'=>false
-				])
-				->add('parentId',"text",[
-					'required'=>false
-				])
-				->add('spam',"text",[
-					'required'=>false,
-					'data'=>0
-				])
-				->add('ip',"text",[
-					'required'=>false
-				])
-			;
-		}
+		$builder
+			->add('username')
+			->add('email')
+			->add('content')
+			->add('model',"text",[
+				'required'=>false
+			])
+			->add('modelId',"text",[
+				'required'=>false
+			])
+			->add('parentId',"text",[
+				'required'=>false
+			])
+			->add('spam',"text",[
+				'required'=>false,
+				'data'=>0
+			])
+			->add('ip',"text",[
+				'required'=>false
+			])
+		;
 	}
 
 	/**

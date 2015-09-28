@@ -6,7 +6,7 @@
 
 ## Presentation
 
-The Symfony2-CommentBundle bundle allows you to add a form that will allow you to comment on your content and then to retrieve these comments. All this very easily.
+The Symfony2-CommentBundle bundle allows you to add a form that will allow you to comment on your content and then to retrieve these comments.
 
 ## Documentation
 

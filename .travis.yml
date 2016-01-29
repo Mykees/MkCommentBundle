@@ -6,18 +6,20 @@ php:
 env:
     - SYMFONY_VERSION=2.6.*
 
+ before_install:
+    - composer self-update
+
 before_script:
     - mysql -e "create database test;"
-    - composer self-update
     - composer require symfony/symfony:${SYMFONY_VERSION} --no-update
     - composer install
-    - php Tests/Fixtures/bin/console --env=test doctrine:schema:create
-    - php Tests/Fixtures/bin/console --env=test doctrine:schema:update --force
-    - php Tests/Fixtures/bin/console --env=test assetic:dump
+    - travis_wait php Tests/Fixtures/bin/console --env=test doctrine:schema:create
+    - travis_wait php Tests/Fixtures/bin/console --env=test doctrine:schema:update --force
+    - travis_wait php Tests/Fixtures/bin/console --env=test assetic:dump
 
 
 after_script:
-    - php Tests/Fixtures/bin/console --env=test doctrine:database:drop --force
+    - travis_wait php Tests/Fixtures/bin/console --env=test doctrine:database:drop --force
 
 script:
     - phpunit

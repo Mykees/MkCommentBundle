@@ -10,6 +10,7 @@ before_install:
     - composer self-update
 
 before_script:
+    - phpenv config-rm xdebug.ini || true
     - mysql -e "create database test;"
     - composer require symfony/symfony:${SYMFONY_VERSION} --no-update
     - composer install
